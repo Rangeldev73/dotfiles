@@ -30,7 +30,7 @@ hl.monitor({
 -- Set programs that you use
 local terminal = "env LIBGL_ALWAYS_SOFTWARE=1 kitty"
 local fileManager = "dolphin"
-local menu        = "hyprlauncher"
+local menu        = "wofi --show drun"
 
 
 -------------------
