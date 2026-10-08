@@ -24,7 +24,7 @@
         "temperature",
         "backlight",
         "keyboard-state",
-        "hyprland/language",
+	"hyprland/language",
         "battery",
         "clock",
         "tray"
@@ -54,6 +54,10 @@
             "locked": "",
             "unlocked": ""
         }
+    },
+    "hyprland/language": {
+    	"format": "{short}",
+	"keyboard-name": "at-translated-set-2-keyboard"
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
