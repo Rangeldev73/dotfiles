@@ -49,6 +49,8 @@ local menu        = "rofi -show drun"
 -- end)
 hl.on("hyprland.start",function ()
 	hl.exec_cmd("waybar")
+	hl.exec_cmd("dunst")
+	hl.exec_cmd("env LIBGL_ALWAYS_SOFTWARE=1 /usr/lib/hyprpolkitagent/hyprpolkitagent")
 end)
 
 
