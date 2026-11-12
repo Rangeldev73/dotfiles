@@ -17,18 +17,36 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
     output   = "",
+    -- Monitor Virtual-1
     mode     = "preferred",
+    -- mode = 1280x800@60
     position = "auto",
+    -- positon = 0x0
     scale    = "auto",
+    -- scale = 1;
 })
 
 
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
+-- Machine-specific settings, chosen by hostname (see machines/*.lua).
+local function read_hostname()
+    local f = io.open("/etc/hostname", "r")
+    if not f then return "default" end
+    local name = f:read("*l")
+    f:close()
+    return name or "default"
+end
+
+local ok, machine = pcall(require, "machines." .. read_hostname())
+if not ok or type(machine) ~= "table" then
+    machine = require("machines.default")
+end
+local gl = machine.gl_prefix or ""
 
 -- Set programs that you use
-local terminal = "env LIBGL_ALWAYS_SOFTWARE=1 kitty"
+local terminal = gl .. "kitty"
 local fileManager = "thunar"
 local menu        = "rofi -show drun"
 
@@ -52,7 +70,7 @@ hl.on("hyprland.start",function ()
 	hl.exec_cmd("dunst")
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
-	hl.exec_cmd("env LIBGL_ALWAYS_SOFTWARE=1 /usr/lib/hyprpolkitagent/hyprpolkitagent")
+	hl.exec_cmd(gl .. "/usr/lib/hyprpolkitagent/hyprpolkitagent")
 end)
 
 
