@@ -70,7 +70,7 @@ hl.on("hyprland.start",function ()
 	hl.exec_cmd("dunst")
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
-	hl.exec_cmd(gl .. "/usr/lib/hyprpolkitagent/hyprpolkitagent")
+	hl.exec_cmd("sh -c 'sleep 3; exec " .. gl .. "/usr/lib/hyprpolkitagent/hyprpolkitagent >> /tmp/polkit-agent.log 2>&1'")
 end)
 
 
