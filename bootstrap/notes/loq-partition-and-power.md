@@ -32,3 +32,20 @@ arrives. None of it has been verified on the real hardware yet.
 - [ ] Secure Boot: decide, and check that it does not block hibernation.
 - [ ] Note the firmware version and settings before changing anything.
 - [ ] Battery name in /sys/class/power_supply for the Waybar battery module.
+
+## Battery health and GPU (to verify on the LOQ; sources are forum posts)
+- [ ] Charge limit: check if /sys/bus/platform/drivers/ideapad_acpi/*/conservation_mode
+      exists (0 = off, 1 = on). On the documented Lenovo models it is a fixed
+      on/off cap (about 60%); the value on the LOQ is unknown.
+- [ ] If it exists, make it persistent (TLP battery care or a systemd setting).
+- [ ] Check if the firmware or driver offers a bypass/pass-through mode
+      (unknown for the LOQ).
+- [ ] BIOS: look for a hybrid/discrete (MUX) GPU option; decide which GPU drives
+      the compositor (Intel iGPU for battery life).
+- [ ] NVIDIA runtime power management so the dGPU sleeps when idle; PRIME
+      render offload for games.
+- [ ] Power profiles: power-profiles-daemon or TLP, not both. On LOQs the
+      profile mostly changes the GPU power limit and the fan curve; check
+      nvidia-powerd for the GPU power limit.
+- [ ] Suspend/hibernate with NVIDIA (see above).
+- [ ] Add here what was researched before the laptop arrives.
