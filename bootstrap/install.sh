@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Post-install bootstrap for the Arch + Hyprland setup.
 # Usage: bash bootstrap/install.sh [--dry-run] [vm|loq]
-# Safe to run more than once. Run it as your normal user (it uses sudo).
+# Safe to run more than once. Run it as your normal user (it uses sudo),
+# from a TTY (not inside Hyprland).
 set -euo pipefail
 
 DRY=false
@@ -10,7 +11,11 @@ for arg in "$@"; do
     case "$arg" in
         -n|--dry-run) DRY=true ;;
         vm|loq) PROFILE="$arg" ;;
-        *) echo "Usage: $0 [--dry-run] [vm|loq]" >&2; exit 1 ;;
+        *)
+            printf 'Unknown argument: %q\n' "$arg" >&2
+            echo "Usage: bash $0 [--dry-run] [vm|loq]" >&2
+            exit 1
+            ;;
     esac
 done
 
@@ -58,6 +63,9 @@ read_list() {
 
 [[ $EUID -ne 0 ]] || die "Run as your normal user, not root (the script calls sudo)."
 command -v pacman >/dev/null || die "pacman not found: this script is for Arch Linux."
+if [[ -n "${WAYLAND_DISPLAY:-}" ]] && ! $DRY; then
+    die "Run this from a TTY (Ctrl+Alt+F3), not inside Hyprland: the upgrade replaces Hyprland while it is running."
+fi
 
 if [[ -z "$PROFILE" ]]; then
     case "$(cat /etc/hostname)" in
@@ -67,6 +75,9 @@ if [[ -z "$PROFILE" ]]; then
     esac
 fi
 echo "Profile: $PROFILE (dry-run: $DRY)"
+
+# Ask for the sudo password once, up front.
+$DRY || sudo -v
 
 # ---------------------------------------------------------------- packages
 step "Updating the system and installing packages"
@@ -119,11 +130,11 @@ step "Enabling services"
 run sudo systemctl enable --now NetworkManager.service
 run sudo systemctl enable --now fstrim.timer
 
-if sudo snapper list-configs 2>/dev/null | grep -qE '^root\s*\|'; then
+if [[ -f /etc/snapper/configs/root ]]; then
     run sudo systemctl enable --now snapper-cleanup.timer
     run sudo systemctl disable --now snapper-timeline.timer
 else
-    warn "snapper 'root' config not found: follow bootstrap/notes/snapper.md first (it edits /etc/fstab)."
+    warn "snapper 'root' config not found (/etc/snapper/configs/root): follow bootstrap/notes/snapper.md first (it edits /etc/fstab)."
 fi
 
 run systemctl --user enable --now pipewire pipewire-pulse wireplumber \
@@ -137,5 +148,8 @@ fi
 step "Done"
 echo "Reminders:"
 echo " - snapper and fstab setup is manual: bootstrap/notes/snapper.md"
+echo " - if the kernel was updated, reboot before starting Hyprland"
 echo " - log in on tty1 to start Hyprland (the bash package does it)"
-echo " - files replaced by dotfile links (if any) were moved to: $BACKUP_DIR"
+if [[ -d "$BACKUP_DIR" ]]; then
+    echo " - files replaced by dotfile links were moved to: $BACKUP_DIR"
+fi
