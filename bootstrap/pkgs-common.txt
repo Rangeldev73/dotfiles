@@ -1,10 +1,10 @@
 base
 base-devel
+brightnessctl
 btrfs-progs
 cliphist
 dunst
 fastfetch
-foot
 git
 grim
 gvfs
@@ -22,7 +22,7 @@ networkmanager
 openssh
 pavucontrol
 pipewire-pulse
-polkit-kde-agent
+playerctl
 qt5-wayland
 qt6-wayland
 rofi
@@ -36,13 +36,10 @@ thunar
 tree
 ttf-jetbrains-mono-nerd
 tumbler
-virtualbox-guest-utils
-vulkan-swrast
 waybar
 wayland
 wireplumber
 wl-clipboard
-wofi
 xdg-desktop-portal-gtk
 xdg-desktop-portal-hyprland
 xorg-xwayland

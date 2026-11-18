@@ -1,0 +1,9 @@
+# UNVERIFIED until the laptop arrives. Lines starting with # are ignored.
+nvidia-open
+nvidia-utils
+egl-wayland
+nvidia-prime
+vulkan-intel
+tlp
+# Optional, to decide: intel-media-driver, nvidia-settings,
+# lib32-nvidia-utils (needs the multilib repo, for Steam).
