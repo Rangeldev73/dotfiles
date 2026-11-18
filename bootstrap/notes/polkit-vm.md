@@ -13,7 +13,10 @@ Facts:
 - It worked through the autostart on 2026-10-08, when Hyprland was started by
   hand. Since then Hyprland starts from ~/.bash_profile (bash package) and the
   per-machine layer was added. Cause not found.
-- polkitd 127 does not log agent registrations in the journal.
+- polkitd runs with --log-level=notice, so agent registrations probably are not
+  shown in the journal (not tested at a more detailed level).
+- Only hyprpolkitagent is running; polkit-kde-agent is installed but not
+  running, so it is not the cause.
 - The terminal prompt of pkexec rejected the password while sudo accepted it.
   Unexplained.
 
