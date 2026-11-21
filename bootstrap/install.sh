@@ -130,8 +130,14 @@ for dir in */; do
     pkg="${dir%/}"
     [[ "$pkg" == "bootstrap" ]] && continue
     # Real files that would block the links are moved to a backup folder.
+    # Two message formats: older stow ("existing target is neither a link nor
+    # a directory: FILE") and stow 2.4+ ("cannot stow ... over existing target
+    # FILE since neither a link nor a directory and --adopt not specified").
     conflicts="$(stow --no-folding -n -d "$REPO" -t "$HOME" "$pkg" 2>&1 \
-        | sed -n 's/.*existing target is neither a link nor a directory: //p' || true)"
+        | sed -n \
+            -e 's/.*existing target is neither a link nor a directory: //p' \
+            -e 's/.*over existing target \(.*\) since neither a link nor a directory.*/\1/p' \
+        || true)"
     while IFS= read -r rel; do
         [[ -n "$rel" ]] || continue
         warn "moving existing ~/$rel to $BACKUP_DIR/"
