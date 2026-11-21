@@ -12,3 +12,6 @@ Run one at a time and note the result.
 - [ ] kb_layout matches the physical keyboard.
 - [ ] Monitor name and refresh rate (hyprctl monitors), 144 Hz.
 - [ ] Brightness and volume keys.
+- [ ] GitHub over port 443 on the university network (eduroam blocks port 22):
+      ssh -T git@github.com (uses ~/.ssh/config -> ssh.github.com:443), then
+      git push from ~/dotfiles. Verified at home on 2026-11-21.

@@ -45,6 +45,11 @@ if not ok or type(machine) ~= "table" then
 end
 local gl = machine.gl_prefix or ""
 
+-- Which GPUs Hyprland may use, only on machines that set it (see machines/*.lua).
+if machine.drm_devices then
+    hl.env("AQ_DRM_DEVICES", machine.drm_devices)
+end
+
 -- Set programs that you use
 local terminal = gl .. "kitty"
 local fileManager = "thunar"

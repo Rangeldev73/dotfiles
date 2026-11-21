@@ -1,0 +1,6 @@
+# Stable names for the two GPUs of the Lenovo LOQ 15IRX9 (card0/card1 can swap
+# between boots). Used by AQ_DRM_DEVICES in hypr/.config/hypr/machines/arch-loq.lua.
+# Intel UHD (iGPU, drives the internal panel)
+KERNEL=="card*", KERNELS=="0000:00:02.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/intel-igpu"
+# NVIDIA RTX 4050 (dGPU, on demand with prime-run)
+KERNEL=="card*", KERNELS=="0000:01:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/nvidia-dgpu"
