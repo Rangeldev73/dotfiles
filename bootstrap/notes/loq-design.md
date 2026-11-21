@@ -127,8 +127,9 @@ the initramfs (we do not want NVIDIA in early KMS, see GPU).
 - Bypass charging (outlet without using the battery): unknown for the LOQ.
 
 ## Repo fixes found in the 2026-11-21 review (still to do)
-- 95-bootbackup.hook only triggers on kernel (vmlinuz) changes; initramfs
-  rebuilds from other packages and systemd-boot updates also change /boot.
+- (fixed) 95-bootbackup.hook now runs after every pacman transaction.
+  Remaining gap: systemd-boot-update.service updates the bootloader at boot,
+  outside pacman; the backup catches it at the next pacman transaction.
 - Waybar: power-profiles-daemon module (TLP was chosen), missing
   power_menu.xml for custom/power, unused battery#bat2 (BAT2).
 - hypridle.conf: rgb:kbd_backlight probably does not exist on the LOQ.

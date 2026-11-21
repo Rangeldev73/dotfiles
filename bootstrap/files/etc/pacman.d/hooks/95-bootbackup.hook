@@ -1,9 +1,16 @@
+# Copy the ESP (/boot, vfat, outside Btrfs) into the root subvolume, so every
+# snapper snapshot of @ also holds the /boot that matches it.
+# Runs after every pacman transaction: kernel, initramfs (mkinitcpio rebuilds
+# triggered by firmware, systemd, cryptsetup...), intel-ucode and systemd-boot
+# can all change /boot, and rsync only copies what changed.
+# Named 95-* so it runs after 90-mkinitcpio-install.hook.
+
 [Trigger]
 Operation = Upgrade
 Operation = Install
 Operation = Remove
-Type = Path
-Target = usr/lib/modules/*/vmlinuz
+Type = Package
+Target = *
 
 [Action]
 Depends = rsync
