@@ -72,19 +72,23 @@ mount --mkdir -o $O,subvol=@pkg /dev/mapper/cryptroot /mnt/var/cache/pacman/pkg
 mount --mkdir -o $O,subvol=@snapshots /dev/mapper/cryptroot /mnt/.snapshots
 mount --mkdir -o $O,subvol=@swap /dev/mapper/cryptroot /mnt/swap
 mkfs.fat -F 32 -n EFI /dev/nvme0n1p1
-mount --mkdir -o fmask=0077,dmask=0077 /dev/nvme0n1p1 /mnt/boot
+mount --mkdir -t vfat -o fmask=0077,dmask=0077 /dev/nvme0n1p1 /mnt/boot
 btrfs filesystem mkswapfile --size 20g --uuid clear /mnt/swap/swapfile
 findmnt -R /mnt
 Notes: Btrfs mount options apply to the whole filesystem, so @swap also shows
 compress=zstd:1; mkswapfile marks the swapfile NOCOW and uncompressed, which
-is what swap needs. fmask/dmask keep /boot private (systemd-boot warns
+is what swap needs. -t vfat: without it, mount right after mkfs.fat failed
+on 2026-11-21 (tried squashfs; probably udev had not seen the new FAT yet).
+fmask/dmask keep /boot private (systemd-boot warns
 about a world-readable random seed otherwise).
 
 ## Phase 6: base system
 Optional, faster mirrors: reflector --country Brazil --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
 pacstrap -K /mnt base linux linux-firmware intel-ucode btrfs-progs networkmanager sudo neovim git
-genfstab -U /mnt >> /mnt/etc/fstab
+genfstab -U /mnt | sed 's/,subvolid=[0-9]*//' >> /mnt/etc/fstab
 printf '/swap/swapfile none swap defaults 0 0\n' >> /mnt/etc/fstab
+(sed only filters genfstab output: no subvolid= in fstab, so a rollback that
+replaces @ is not pinned to the old subvolume id.)
 cat /mnt/etc/fstab   (paste it: check subvol= on each Btrfs line and the swap line)
 
 arch-chroot /mnt
@@ -110,6 +114,7 @@ Initramfs (systemd hooks + LUKS):
 printf 'HOOKS=(base systemd autodetect microcode modconf kms keyboard sd-vconsole block sd-encrypt filesystems fsck)\n' > /etc/mkinitcpio.conf.d/10-loq.conf
 mkinitcpio -P
 lsinitcpio /boot/initramfs-linux.img | grep -E 'systemd-cryptsetup|vconsole'
+ls -lh /boot   (2026-11-21: initramfs-linux.img was 137M, no fallback image)
 (want both: the unlock tool and the keymap are inside the initramfs)
 
 ## Phase 7: bootloader (systemd-boot) [changes the firmware boot entries]
@@ -119,22 +124,33 @@ printf 'default arch.conf\ntimeout 3\neditor no\n' > /boot/loader/loader.conf
 UUID=$(blkid -s UUID -o value /dev/nvme0n1p2)
 OPTS="rd.luks.name=$UUID=cryptroot root=/dev/mapper/cryptroot rootflags=subvol=@ rw"
 printf 'title Arch Linux\nlinux /vmlinuz-linux\ninitrd /initramfs-linux.img\noptions %s\n' "$OPTS" > /boot/loader/entries/arch.conf
-printf 'title Arch Linux (fallback)\nlinux /vmlinuz-linux\ninitrd /initramfs-linux-fallback.img\noptions %s\n' "$OPTS" > /boot/loader/entries/arch-fallback.conf
 cat /boot/loader/entries/arch.conf
 bootctl list
-(No intel-ucode initrd line: the microcode hook puts it in the initramfs.)
+(No intel-ucode initrd line: the microcode hook puts it in the initramfs.
+No fallback entry: the linux preset only builds 'default' (verified
+2026-11-21, PRESETS=('default')). Recovery = live USB.)
 
 systemctl enable NetworkManager.service systemd-boot-update.service
 exit
+Inside arch-chroot, bootctl does NOT write the NVRAM ("Running in a chroot,
+enabling --graceful ... skipping EFI variable modifications", 2026-11-21).
+Create the entry from the live ISO (outside the chroot):
+cryptsetup luksUUID /dev/nvme0n1p2     (must match rd.luks.name in arch.conf)
+efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Linux Boot Manager" --loader '\EFI\systemd\systemd-bootx64.efi'
+efibootmgr                              (new entry first in BootOrder)
 umount -R /mnt
 cryptsetup close cryptroot
 reboot   (remove the USB stick when the screen goes black)
 
 ## Phase 8: first boot
 1. Passphrase prompt (keyboard test). Log in as rangel on tty1.
+   SSH for the rest of the phase: sudo pacman -S openssh && sudo systemctl start sshd
+   then ip -brief addr and, on Windows, ssh rangel@<IP>.
 2. Wi-Fi if needed: nmcli device wifi connect "SSID" --ask
-3. Remove the factory NVRAM entry: efibootmgr (paste the list), then
-   sudo efibootmgr -b 0003 -B   (only after confirming 0003 is still "lux")
+3. Remove the stale factory NVRAM entries (they point to the old ESP):
+   sudo pacman -S efibootmgr && efibootmgr   (paste the list), then
+   sudo efibootmgr -b 0003 -B and sudo efibootmgr -b 0000 -B
+   (only after confirming 0003 is "lux" and 0000 points to HD(2,GPT,a968410a-...))
 4. Dotfiles (HTTPS, read-only until the SSH key exists):
    git clone https://github.com/Rangeldev73/dotfiles.git ~/dotfiles
    cd ~/dotfiles && bash bootstrap/install.sh --dry-run   (paste the output)
@@ -142,6 +158,8 @@ reboot   (remove the USB stick when the screen goes black)
 5. Snapper: bootstrap/notes/snapper.md, section "LOQ (fresh install)",
    then run install.sh again (it enables the snapper timers).
 6. reboot: passphrase -> autologin -> Hyprland.
+7. GitHub: SSH key (ssh-keygen -t ed25519), add it on github.com, git config
+   user.name/user.email, switch the dotfiles remote to SSH, test a push.
 
 ## Phase 9: tests on the real hardware (one at a time, results into the notes)
 - Hibernate: systemctl hibernate, power on, passphrase, session is back.
@@ -152,8 +170,7 @@ reboot   (remove the USB stick when the screen goes black)
 - Snapshot: a pacman install creates pre/post snapshots (snapper list).
 
 ## Later (separate chats)
-1. Git/GitHub: SSH key, git config, switch the dotfiles remote to SSH.
-2. Dev tools: IntelliJ, VS Code, Docker, JDK, C/C++ toolchain, .NET (C# for
+1. Dev tools: IntelliJ, VS Code, Docker, JDK, C/C++ toolchain, .NET (C# for
    Godot), Python, Godot (pkgs-dev list, decided item by item).
-3. Visual (dark blue and black, JetBrains Mono Nerd Font), piece by piece.
-4. Optional: Secure Boot (sbctl), TPM unlock, zram, Steam (multilib).
+2. Visual (dark blue and black, JetBrains Mono Nerd Font), piece by piece.
+3. Optional: Secure Boot (sbctl), TPM unlock, zram, Steam (multilib).

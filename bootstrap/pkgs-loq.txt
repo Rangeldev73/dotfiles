@@ -14,6 +14,9 @@ intel-media-driver
 # Power: TLP instead of power-profiles-daemon (see files-loq/etc/tlp.d).
 tlp
 
+# Firmware boot entries (NVRAM). openssh is already in pkgs-common.txt.
+efibootmgr
+
 # Bluetooth (Intel AX201, verified on the live ISO).
 bluez
 bluez-utils
