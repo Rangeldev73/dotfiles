@@ -133,5 +133,6 @@ the initramfs (we do not want NVIDIA in early KMS, see GPU).
 - Waybar: power-profiles-daemon module (TLP was chosen), missing
   power_menu.xml for custom/power, unused battery#bat2 (BAT2).
 - hypridle.conf: rgb:kbd_backlight probably does not exist on the LOQ.
-- install.sh (loq profile): autologin drop-in, TLP extras (the TLP docs ask to
-  mask systemd-rfkill; verify), no LUKS/boot steps (those stay manual).
+- (fixed) install.sh (loq profile): autologin drop-in (only when / is on
+  cryptroot), TLP + masked systemd-rfkill, bluetooth, systemd-boot-update,
+  files-loq/ for loq-only system files (TLP config). Disk/LUKS/boot stay manual.

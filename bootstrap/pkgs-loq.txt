@@ -1,9 +1,22 @@
-# UNVERIFIED until the laptop arrives. Lines starting with # are ignored.
+# Lenovo LOQ 15IRX9 (hostname arch-loq). Lines starting with # are ignored.
+# Comments must be on their own line.
+
+# GPU: Intel iGPU drives the compositor, NVIDIA on demand (prime-run).
+# nvidia-open is prebuilt for the linux kernel (no DKMS). nvidia-utils pulls
+# egl-wayland, egl-wayland2, egl-gbm and egl-x11 as dependencies.
 nvidia-open
 nvidia-utils
-egl-wayland
 nvidia-prime
 vulkan-intel
+# VA-API video decode on the Intel iGPU (keeps the NVIDIA asleep in videos).
+intel-media-driver
+
+# Power: TLP instead of power-profiles-daemon (see files-loq/etc/tlp.d).
 tlp
-# Optional, to decide: intel-media-driver, nvidia-settings,
-# lib32-nvidia-utils (needs the multilib repo, for Steam).
+
+# Bluetooth (Intel AX201, verified on the live ISO).
+bluez
+bluez-utils
+
+# Optional, later: lib32-nvidia-utils (needs multilib, for Steam),
+# nvidia-settings, zram-generator.
