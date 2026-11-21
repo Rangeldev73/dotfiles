@@ -1,2 +1,6 @@
 .DS_Store
 *.log
+
+# Never commit SSH keys or host lists (the ssh package only holds config).
+ssh/.ssh/id_*
+ssh/.ssh/known_hosts*
