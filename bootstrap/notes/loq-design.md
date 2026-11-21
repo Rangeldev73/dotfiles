@@ -58,9 +58,10 @@ Remove it with efibootmgr (show the list first, confirm the number).
   Hypothesis: br-abnt2. Check the physical keyboard in the live ISO first.
 - Root password: set it, so the systemd emergency shell can be used if the
   boot fails. Otherwise recovery is from the live USB (cryptsetup open, mount).
-- TRIM: dm-crypt blocks discards by default. Proposal: allow them (stored in the
-  LUKS2 header with --allow-discards --persistent) and keep fstrim.timer.
-  Trade-off: an attacker can see which blocks are free. To confirm at install.
+- TRIM: dm-crypt blocks discards by default. Decided (2026-11-21): allow them,
+  stored in the LUKS2 header (cryptsetup refresh --allow-discards --persistent
+  cryptroot), and keep fstrim.timer. Trade-off accepted: an attacker can see
+  which blocks are free, not their content.
 
 ## Initramfs and boot entry
 mkinitcpio HOOKS (keymap is not needed with sd-vconsole; microcode embeds
@@ -126,9 +127,6 @@ the initramfs (we do not want NVIDIA in early KMS, see GPU).
 - Bypass charging (outlet without using the battery): unknown for the LOQ.
 
 ## Repo fixes found in the 2026-11-21 review (still to do)
-- snapper.md uses /dev/sda2 (VM layout). On the LOQ live ISO /dev/sda is the
-  USB stick; on the LOQ the Btrfs is /dev/mapper/cryptroot.
-- loq-partition-and-power.md is older than this file (see Status).
 - 95-bootbackup.hook only triggers on kernel (vmlinuz) changes; initramfs
   rebuilds from other packages and systemd-boot updates also change /boot.
 - Waybar: power-profiles-daemon module (TLP was chosen), missing
