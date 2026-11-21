@@ -44,7 +44,9 @@ Btrfs subvolumes and mount points (options: noatime,compress=zstd:1):
 - @log       /var/log
 - @pkg       /var/cache/pacman/pkg
 - @snapshots /.snapshots
-- @swap      /swap (noatime only; never snapshotted)
+- @swap      /swap (never snapshotted)
+Btrfs mount options are per filesystem, so @swap gets the same options;
+mkswapfile marks the swapfile NOCOW and uncompressed. Steps: loq-install.md.
 
 After the install: the factory NVRAM entry Boot0003 "lux" survives the wipe.
 Remove it with efibootmgr (show the list first, confirm the number).
