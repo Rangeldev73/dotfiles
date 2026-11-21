@@ -23,3 +23,6 @@ On the LOQ:
 3. Install brightnessctl; hypridle.conf is still the stock sample
    (it suspends after 30 minutes).
 4. If hyprlock still crashes, pick another lock screen.
+
+Update 2026-11-21: on the LOQ (real hardware) hyprlock locks and unlocks
+with the current config. VM-only problem; closed. hypridle still to configure.

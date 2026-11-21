@@ -26,3 +26,6 @@ If it persists on the LOQ:
 - Compare with starting Hyprland by hand on tty2.
 
 Workaround meanwhile: use sudo in a terminal for privileged actions.
+
+Update 2026-11-21: on the LOQ (real hardware) the agent registers and the
+graphical window works with the same autostart. VM-only problem; closed.

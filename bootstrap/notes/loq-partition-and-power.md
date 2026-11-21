@@ -20,8 +20,8 @@ RTX 4050. Linux only (no Windows).
 - [x] mem_sleep: s2idle [deep]; deep is the default. Verified.
 - [x] Resume mechanism decided: systemd initramfs + HibernateLocation EFI
       variable (no resume hook, no resume_offset).
-- [ ] Test systemctl hibernate on the LOQ.
-- [ ] NVIDIA with suspend/hibernate (see loq-design.md, GPU).
+- [x] systemctl hibernate tested on the LOQ: session comes back.
+- [x] NVIDIA with hibernate: works (UseKernelSuspendNotifiers=1, no services).
 - [ ] hypridle: re-enable the brightness and suspend listeners.
 - [ ] Lid close behavior (logind HandleLidSwitch).
 
@@ -37,9 +37,10 @@ RTX 4050. Linux only (no Windows).
 
 ## Battery health and GPU
 - [x] conservation_mode exists (value 0). Cap percentage still unknown.
-- [ ] Make it persistent (TLP) and measure the cap.
+- [x] Persistent through TLP (charge_types Long_Life). [ ] Measure the cap.
 - [ ] Bypass/pass-through charging: unknown for the LOQ.
 - [x] BIOS MUX: Dynamic Graphics; the panel is on the Intel iGPU.
-- [ ] NVIDIA runtime D3 with nvidia-open; PRIME render offload for games.
+- [x] NVIDIA runtime D3: not available on this LOQ (see loq-design.md).
+- [ ] PRIME render offload (prime-run) with a real app.
 - [x] Power profiles: TLP, not power-profiles-daemon.
 - [ ] Check nvidia-powerd for the GPU power limit.

@@ -66,3 +66,18 @@ Nothing on the NVMe was changed. "Verified" = seen in BIOS or command output.
 ## Still to test after install
 See loq-first-boot-tests.md, plus: brightness via nvidia_wmi_ec_backlight, conservation
 cap %, NVIDIA runtime D3 with nvidia-open, external HDMI on NVIDIA, 144 Hz, keyboard layout.
+
+## Verified after the install (2026-11-21, Arch on the NVMe)
+- Keyboard: physical ABNT2 (has a Ç key); console keymap br-abnt2, Hyprland
+  kb_layout "br". The LUKS passphrase is typed with br-abnt2 at boot.
+- Panel: eDP-1 1920x1080, 144 Hz and 60 Hz modes; Hyprland uses 144 Hz.
+- Brightness keys work through nvidia_wmi_ec_backlight.
+- Battery: charge_types offers Fast/Standard/Long_Life (factory: Fast);
+  Long_Life (conservation) works. energy_full 63190 mWh (design 60000).
+- NVIDIA (nvidia-open 620): runtime D3 not available ("Disabled by default";
+  "Not supported" with NVreg_DynamicPowerManagement=0x02). See loq-design.md.
+- ESP: the Lenovo firmware writes \BackupSbb.bin (8 MiB) into the ESP
+  (hypothesis: firmware backup file; leave it alone).
+- NVRAM: after the wipe the firmware removed "lux" by itself and re-pointed
+  its own "EFI Hard Drive" entry (Boot0000) to the new ESP fallback path.
+

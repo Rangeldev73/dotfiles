@@ -144,24 +144,33 @@ reboot   (remove the USB stick when the screen goes black)
 
 ## Phase 8: first boot
 1. Passphrase prompt (keyboard test). Log in as rangel on tty1.
-   SSH for the rest of the phase: sudo pacman -S openssh && sudo systemctl start sshd
-   then ip -brief addr and, on Windows, ssh rangel@<IP>.
+   SSH (started by hand after every boot; not enabled):
+   sudo pacman -S --needed openssh && sudo systemctl start sshd
+   then on Windows ssh rangel@<IP> (ssh-keygen -R <IP> first if the live ISO
+   used the same IP).
 2. Wi-Fi if needed: nmcli device wifi connect "SSID" --ask
-3. Remove the stale factory NVRAM entries (they point to the old ESP):
-   sudo pacman -S efibootmgr && efibootmgr   (paste the list), then
-   sudo efibootmgr -b 0003 -B and sudo efibootmgr -b 0000 -B
-   (only after confirming 0003 is "lux" and 0000 points to HD(2,GPT,a968410a-...))
+3. NVRAM: nothing to do on 2026-11-21. The firmware removed "lux" and pointed
+   its own Boot0000 "EFI Hard Drive" entry at the new ESP. Check with efibootmgr.
 4. Dotfiles (HTTPS, read-only until the SSH key exists):
    git clone https://github.com/Rangeldev73/dotfiles.git ~/dotfiles
    cd ~/dotfiles && bash bootstrap/install.sh --dry-run   (paste the output)
    bash bootstrap/install.sh
-5. Snapper: bootstrap/notes/snapper.md, section "LOQ (fresh install)",
-   then run install.sh again (it enables the snapper timers).
-6. reboot: passphrase -> autologin -> Hyprland.
-7. GitHub: SSH key (ssh-keygen -t ed25519), add it on github.com, git config
-   user.name/user.email, switch the dotfiles remote to SSH, test a push.
+   (git log needs --no-pager until less is installed by install.sh.)
+5. Snapper: bootstrap/notes/snapper.md, section "LOQ (fresh install)", then
+   sudo systemctl enable --now snapper-cleanup.timer
+   sudo systemctl disable --now snapper-timeline.timer
+6. Check the initramfs before rebooting: sudo lsinitcpio /boot/initramfs-linux.img
+   must contain systemd-cryptsetup and br-abnt2, and no nouveau (the versioned
+   mkinitcpio.conf.d/10-loq.conf has no kms hook; rebuild with sudo mkinitcpio -P).
+   /boot is root-only (fmask=0077): use sudo to read it.
+7. reboot: passphrase -> autologin -> Hyprland.
+8. GitHub: ssh-keygen -t ed25519, add the .pub on github.com, git config
+   user.name/user.email, remote git@github.com:Rangeldev73/dotfiles.git.
+   The ssh stow package sends github.com to ssh.github.com:443 (eduroam
+   blocks port 22). Verify GitHub's Ed25519 fingerprint
+   SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
 
-## Phase 9: tests on the real hardware (one at a time, results into the notes)
+## Phase 9: tests on the real hardware (results: loq-first-boot-tests.md)
 - Hibernate: systemctl hibernate, power on, passphrase, session is back.
 - loq-first-boot-tests.md (kitty, polkit, hyprlock, waybar, keys, 144 Hz).
 - GPU: NVIDIA runtime_status "suspended" when idle; prime-run works.
