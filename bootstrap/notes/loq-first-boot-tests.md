@@ -15,6 +15,8 @@ Results from 2026-11-21 (Arch installed with loq-install.md).
 - [x] Monitor eDP-1 at 1920x1080@144 (modes: 144 Hz and 60 Hz); "preferred"
       already picks 144 Hz.
 - [x] Brightness (nvidia_wmi_ec_backlight) and volume keys.
+- [x] Wi-Fi selection: nm-applet --indicator in the waybar tray (added
+      2026-11-22; before that only nmtui/nmcli in a terminal).
 - [x] Hibernate and resume (session back after the LUKS passphrase).
 - [x] Snapper: pacman creates pre/post snapshots; /.bootbackup holds /boot.
 - [x] TLP: AC -> balanced, battery -> low-power; conservation mode (Long_Life).
