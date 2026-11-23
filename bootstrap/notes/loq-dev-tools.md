@@ -173,3 +173,6 @@ Desktop, Steam (multilib, prime-run).
   - depends on qemu-system-x86 + edk2-ovmf: Cowork runs its sandbox in a QEMU VM
     (PKGBUILD comment: upstream lists them under Recommends).
   Flags file (stow package claude): --password-store=gnome-libsecret.
+- Installed with makepkg -si from the reviewed /tmp/claude-desktop (exact
+  recipe; .deb sha256 Passed). Verified: opens sharp (Wayland), login works.
+  Optional, not installed: libayatana-appindicator (tray icon).
