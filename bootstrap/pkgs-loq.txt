@@ -21,5 +21,12 @@ efibootmgr
 bluez
 bluez-utils
 
-# Optional, later: lib32-nvidia-utils (needs multilib, for Steam),
-# nvidia-settings, zram-generator.
+# Steam (needs [multilib]; install.sh enables it). lib32-nvidia-utils must
+# match nvidia-utils (same version, pacman keeps them together). Games on the
+# NVIDIA: Steam launch option "prime-run %command%".
+steam
+lib32-nvidia-utils
+lib32-vulkan-intel
+ttf-liberation
+
+# Optional, later: nvidia-settings, zram-generator.

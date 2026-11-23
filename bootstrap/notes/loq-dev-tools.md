@@ -176,3 +176,17 @@ Desktop, Steam (multilib, prime-run).
 - Installed with makepkg -si from the reviewed /tmp/claude-desktop (exact
   recipe; .deb sha256 Passed). Verified: opens sharp (Wayland), login works.
   Optional, not installed: libayatana-appindicator (tray icon).
+
+## Steam (verified 2026-11-23)
+- [multilib] enabled in /etc/pacman.conf (lines 93-94 uncommented; backup
+  /etc/pacman.conf.bak-multilib; the -testing repos stay off). install.sh does
+  the same on the loq profile when multilib is missing.
+- Packages (pkgs-loq.txt): steam, lib32-nvidia-utils (620.73.04, same as
+  nvidia-utils), lib32-vulkan-intel, ttf-liberation (font Steam asks for).
+- The Steam client runs on the Intel (no prime-run). Games on the RTX 4050:
+  Properties -> General -> Launch Options: prime-run %command%
+  Windows games run through Proton (Compatibility tab if Steam does not pick it).
+- Verified: Onikura Demo (Windows game, Proton) with prime-run %command% runs
+  smoothly; nvidia-smi showed Onikura.exe as a C+G process on the
+  RTX 4050 (35 % use). Use nvidia-smi only once to check, never in a loop.
+- Optional, not installed: ntsync-autoload (Steam optdepend for NTSync).

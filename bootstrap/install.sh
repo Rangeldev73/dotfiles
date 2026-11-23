@@ -104,6 +104,18 @@ echo "Profile: $PROFILE (dry-run: $DRY)"
 # Ask for the sudo password once, up front.
 $DRY || sudo -v
 
+# ---------------------------------------------------------------- multilib
+# Steam and the 32-bit drivers (pkgs-loq.txt) live in [multilib], which is
+# commented out in the stock pacman.conf. Uncomment only that block.
+if [[ "$PROFILE" == loq ]] && ! pacman-conf --repo-list | grep -qx multilib; then
+    step "Enabling the [multilib] repository in /etc/pacman.conf"
+    run sudo cp /etc/pacman.conf /etc/pacman.conf.bak-multilib
+    run sudo sed -i -e '/^#\[multilib\]$/{s/^#//;n;s|^#Include = /etc/pacman.d/mirrorlist$|Include = /etc/pacman.d/mirrorlist|}' /etc/pacman.conf
+    if ! $DRY && ! pacman-conf --repo-list | grep -qx multilib; then
+        die "could not enable [multilib]; check /etc/pacman.conf (backup: /etc/pacman.conf.bak-multilib)"
+    fi
+fi
+
 # ---------------------------------------------------------------- packages
 step "Updating the system and installing packages"
 mapfile -t PKGS < <(read_list "$HERE/pkgs-common.txt"; read_list "$HERE/pkgs-dev.txt"; read_list "$HERE/pkgs-$PROFILE.txt")

@@ -23,8 +23,8 @@ Results from 2026-11-21 (Arch installed with loq-install.md).
 - [ ] NVIDIA idle power: runtime D3 not available (see loq-design.md, GPU).
 - [x] prime-run with a real app (2026-11-23): godot-mono alone uses
       "Mesa Intel(R) Graphics (RPL-S)"; prime-run godot-mono uses "NVIDIA GeForce
-      RTX 4050 Laptop GPU" (OpenGL, driver 620.73.04). Vulkan still to see
-      (a Forward+ project or a Steam game).
+      RTX 4050 Laptop GPU" (OpenGL, driver 620.73.04). Steam game through
+      Proton with prime-run %command% also on the RTX 4050 (2026-11-23).
 - [x] Monitor scale: "auto" picked 1.5 and blurred XWayland apps (Godot);
       set scale = 1 in machines/arch-loq.lua (2026-11-23).
 - [ ] External monitor on HDMI (needs the second drm_devices line).
