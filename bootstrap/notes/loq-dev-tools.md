@@ -35,3 +35,34 @@ Desktop, Steam (multilib, prime-run).
 - Verified: opens under Hyprland, sharp text, no keyring warning.
   pacman reported org.freedesktop.secrets as installed (provider not checked yet).
 - To do: Settings Sync login after Chrome is installed.
+
+## Docker (verified 2026-11-23)
+- Packages: docker, docker-compose, docker-buildx (Docker 29.10).
+- Storage driver: overlayfs with the containerd image store
+  (driver-type io.containerd.snapshotter.v1). Images live in
+  /var/lib/containerd, volumes and containers in /var/lib/docker.
+- Both folders are their own Btrfs subvolumes, so root snapshots and rollbacks
+  do not hold old database blocks or images (chosen over a containerd
+  config.toml root= change, or turning the containerd store off):
+    @docker     -> /var/lib/docker      (ID 280)
+    @containerd -> /var/lib/containerd  (ID 283)
+  fstab lines copy the other Btrfs lines (same UUID and options, subvol=/@docker
+  and subvol=/@containerd). Backups made: /etc/fstab.bak-docker and
+  /etc/fstab.bak-containerd. Safety snapshot before the change: 15.
+- Steps used (on a running system):
+  1. sudo snapper -c root create --description "before @docker subvolume"
+  2. mount -o subvolid=5 /dev/mapper/cryptroot /mnt; btrfs subvolume create
+     /mnt/@docker (and @containerd); umount /mnt
+  3. stop docker.socket docker.service containerd.service, move the old folder
+     away, mkdir the mount point, append the fstab line, findmnt --verify,
+     systemctl daemon-reload, mount, start docker.socket.
+- Access: user in the docker group (root-equivalent; accepted on a single-user
+  laptop with LUKS). Not chosen: rootless Docker, sudo docker.
+- Service: docker.socket enabled, docker.service is not. Docker starts on the
+  first docker command and keeps running until stopped or reboot.
+  Before gaming: docker compose down in the project (frees the containers),
+  or stop everything: sudo systemctl stop docker.socket docker.service containerd.service
+- Verified after a reboot: both folders mounted on their subvolumes,
+  docker.socket active, docker.service inactive until first use, hello-world ok.
+- Note: findmnt with two paths treats them as source and target; use
+  findmnt -T <path> once per path.

@@ -11,3 +11,9 @@ jdk21-openjdk
 openjdk21-src
 openjdk21-doc
 maven
+
+# Docker: started by docker.socket on first use; user in the docker group.
+# On the LOQ /var/lib/docker and /var/lib/containerd are own subvolumes.
+docker
+docker-compose
+docker-buildx

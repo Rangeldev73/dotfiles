@@ -184,6 +184,28 @@ fi
 run systemctl --user enable --now pipewire pipewire-pulse wireplumber \
     || warn "could not enable the audio services (no user session?). Log in on a TTY and run: systemctl --user enable --now pipewire pipewire-pulse wireplumber"
 
+# Docker: docker.socket starts the daemon on first use (no RAM used before).
+# On the LOQ, Docker data must live in its own subvolumes (@docker and
+# @containerd), out of the root snapshots: skip it if they are not mounted.
+if pacman -Q docker &>/dev/null; then
+    docker_ok=true
+    if [[ "$PROFILE" == loq ]]; then
+        for d in /var/lib/docker /var/lib/containerd; do
+            if ! mountpoint -q "$d"; then
+                warn "$d is not a mount point: create its subvolume first (notes/loq-dev-tools.md, Docker). docker.socket not enabled."
+                docker_ok=false
+            fi
+        done
+    fi
+    if $docker_ok; then
+        run sudo systemctl enable --now docker.socket
+        if ! id -nG "$USER" | tr ' ' '\n' | grep -qx docker; then
+            run sudo usermod -aG docker "$USER"
+            warn "added $USER to the docker group: log in again to use docker without sudo."
+        fi
+    fi
+fi
+
 if [[ "$PROFILE" == loq ]]; then
     # TLP replaces power-profiles-daemon; the TLP docs ask to mask systemd-rfkill.
     if pacman -Q power-profiles-daemon &>/dev/null; then

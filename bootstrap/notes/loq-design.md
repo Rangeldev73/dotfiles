@@ -45,6 +45,9 @@ Btrfs subvolumes and mount points (options: noatime,compress=zstd:1):
 - @pkg       /var/cache/pacman/pkg
 - @snapshots /.snapshots
 - @swap      /swap (never snapshotted)
+- @docker    /var/lib/docker (volumes, containers; added 2026-11-23)
+- @containerd /var/lib/containerd (images, containerd image store; added 2026-11-23)
+@docker and @containerd keep Docker data out of root snapshots and rollbacks.
 Btrfs mount options are per filesystem, so @swap gets the same options;
 mkswapfile marks the swapfile NOCOW and uncompressed. Steps: loq-install.md.
 

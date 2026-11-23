@@ -62,7 +62,7 @@ Undo before Phase 5: cryptsetup close cryptroot and run luksFormat again.
 ## Phase 5: Btrfs, subvolumes, ESP, swapfile [DESTRUCTIVE: formats]
 mkfs.btrfs -L arch /dev/mapper/cryptroot
 mount /dev/mapper/cryptroot /mnt
-btrfs subvolume create /mnt/@ /mnt/@home /mnt/@log /mnt/@pkg /mnt/@snapshots /mnt/@swap
+btrfs subvolume create /mnt/@ /mnt/@home /mnt/@log /mnt/@pkg /mnt/@snapshots /mnt/@swap /mnt/@docker /mnt/@containerd
 umount /mnt
 O=noatime,compress=zstd:1
 mount -o $O,subvol=@ /dev/mapper/cryptroot /mnt
@@ -71,6 +71,8 @@ mount --mkdir -o $O,subvol=@log /dev/mapper/cryptroot /mnt/var/log
 mount --mkdir -o $O,subvol=@pkg /dev/mapper/cryptroot /mnt/var/cache/pacman/pkg
 mount --mkdir -o $O,subvol=@snapshots /dev/mapper/cryptroot /mnt/.snapshots
 mount --mkdir -o $O,subvol=@swap /dev/mapper/cryptroot /mnt/swap
+mount --mkdir -o $O,subvol=@docker /dev/mapper/cryptroot /mnt/var/lib/docker
+mount --mkdir -o $O,subvol=@containerd /dev/mapper/cryptroot /mnt/var/lib/containerd
 mkfs.fat -F 32 -n EFI /dev/nvme0n1p1
 mount --mkdir -t vfat -o fmask=0077,dmask=0077 /dev/nvme0n1p1 /mnt/boot
 btrfs filesystem mkswapfile --size 20g --uuid clear /mnt/swap/swapfile
@@ -81,6 +83,8 @@ is what swap needs. -t vfat: without it, mount right after mkfs.fat failed
 on 2026-11-21 (tried squashfs; probably udev had not seen the new FAT yet).
 fmask/dmask keep /boot private (systemd-boot warns
 about a world-readable random seed otherwise).
+@docker and @containerd were added on 2026-11-23, after the install (steps in
+loq-dev-tools.md, Docker); on a new install they are created here.
 
 ## Phase 6: base system
 Optional, faster mirrors: reflector --country Brazil --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
