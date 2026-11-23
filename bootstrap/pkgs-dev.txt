@@ -38,3 +38,17 @@ uv
 # project (npm install -D typescript, or the Vite React + TypeScript template).
 nodejs-lts-krypton
 npm
+
+# Godot 4 with C# (.NET). Same version as the game (4.7.2 on 2026-11-23).
+godot-mono
+
+# Git extras: large files (git lfs install once per user) and the gh CLI.
+git-lfs
+github-cli
+
+# Utilities.
+unzip
+zip
+curl
+jq
+btop

@@ -99,3 +99,17 @@ Desktop, Steam (multilib, prime-run).
 - TypeScript is per project (devDependency), not a system package.
 - Never sudo npm install -g (global tools: set a user prefix first).
 - Verified: npm install -D typescript, tsc hello.ts, node hello.js in /tmp.
+
+## Godot (installed 2026-11-23)
+- Official godot-mono 4.7.2 (same as the game), command godot-mono, uses dotnet-sdk.
+- Project Manager renders with OpenGL (Compatibility). Without prime-run it
+  uses the Intel iGPU; prime-run godot-mono uses the RTX 4050 (verified).
+- Was blurry: it runs on XWayland and Hyprland had picked scale 1.5. Fixed with
+  scale = 1 in machines/arch-loq.lua (sharp; sizes to be raised per app in
+  the visual chat; Godot has its own Display Scale).
+- To do: clone the game (private GitHub repo) and test the C# build/run
+  (does it need dotnet-runtime-8.0?).
+
+## Git extras and utilities (verified 2026-11-23)
+- git-lfs 3.8.1 (git lfs install done for the user), gh 2.105.0 (login after
+  Chrome), unzip/zip, curl (already installed), jq 1.8.2, btop 1.4.8.
