@@ -152,6 +152,10 @@ files-loq/etc/mkinitcpio.conf.d/10-loq.conf.
 - Bypass charging (outlet without using the battery): unknown for the LOQ.
 
 ## Still to do
+- Visual chat: with monitor scale 1 (2026-11-23) everything looks too small
+  (kitty, rofi, waybar, Godot). Keep scale 1 (sharp XWayland) and raise sizes
+  per app: kitty font_size, rofi and waybar font, GTK/Qt font size, Godot
+  Editor Settings -> Interface -> Editor -> Display Scale, IDE fonts.
 - Waybar: power-profiles-daemon module (TLP was chosen), missing
   power_menu.xml for custom/power, unused battery#bat2 (BAT2).
 - hypridle: not in the autostart yet; hypridle.conf is the stock sample
