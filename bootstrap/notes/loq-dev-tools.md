@@ -92,3 +92,10 @@ Desktop, Steam (multilib, prime-run).
 - Verified: uv init + uv add requests + uv run in /tmp.
   The "Failed to hardlink files" warning came from /tmp (tmpfs) vs the cache in
   @home; hypothesis: no warning for projects inside $HOME.
+
+## Node.js (verified 2026-11-23)
+- nodejs-lts-krypton (Node 24.22.3, "Active LTS") and npm 12.2.3.
+  Not chosen: nodejs-lts-jod (Node 22, older LTS).
+- TypeScript is per project (devDependency), not a system package.
+- Never sudo npm install -g (global tools: set a user prefix first).
+- Verified: npm install -D typescript, tsc hello.ts, node hello.js in /tmp.

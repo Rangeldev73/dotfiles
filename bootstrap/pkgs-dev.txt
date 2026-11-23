@@ -33,3 +33,8 @@ dotnet-sdk
 # Global pip install is blocked on Arch (externally managed environment).
 python
 uv
+
+# Node.js: Active LTS (Krypton, Node 24) and npm. TypeScript is installed per
+# project (npm install -D typescript, or the Vite React + TypeScript template).
+nodejs-lts-krypton
+npm
