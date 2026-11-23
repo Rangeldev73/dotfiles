@@ -4,6 +4,13 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
+# User programs installed in ~/.local/bin (Claude Code's native installer puts
+# its launcher there). Set before Hyprland starts, so GUI apps see it too.
+case ":$PATH:" in
+    *":$HOME/.local/bin:"*) ;;
+    *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+
 # .NET SDK 11 from Microsoft's dotnet-install.sh in ~/.dotnet: Arch only ships
 # .NET 10 and the game (Ypykuara global.json) pins 11.0.100. Set before
 # Hyprland starts, so Godot and the IDEs see it too. When Arch packages
