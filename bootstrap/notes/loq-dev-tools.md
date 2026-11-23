@@ -119,8 +119,15 @@ Desktop, Steam (multilib, prime-run).
 - Was blurry: it runs on XWayland and Hyprland had picked scale 1.5. Fixed with
   scale = 1 in machines/arch-loq.lua (sharp; sizes to be raised per app in
   the visual chat; Godot has its own Display Scale).
-- To do: clone the game (private GitHub repo) and test the C# build/run
-  (does it need dotnet-runtime-8.0?).
+- Game (verified 2026-11-23): cloned to ~/projects/Ypykuara (git@github.com,
+  no Git LFS). After a new Hyprland session (so DOTNET_ROOT is set), F5 in the
+  editor builds and runs it on the Intel iGPU. No dotnet-runtime-8.0 needed:
+  the net8.0 game ran with only the .NET 11 runtime in ~/.dotnet
+  (hypothesis: Godot rolls forward to a newer runtime).
+- First open of a fresh clone prints "Cannot open file
+  res://localization/ui.*.translation": those files are generated from ui.csv
+  and git-ignored, so they do not exist until the first import (harmless).
+- .NET CLI telemetry turned off: DOTNET_CLI_TELEMETRY_OPTOUT=1 in bash/.bash_profile.
 
 ## Git extras and utilities (verified 2026-11-23)
 - git-lfs 3.8.1 (git lfs install done for the user), gh 2.105.0 (login after

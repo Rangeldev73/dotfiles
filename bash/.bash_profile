@@ -12,6 +12,8 @@ if [[ -x "$HOME/.dotnet/dotnet" ]]; then
     export DOTNET_ROOT="$HOME/.dotnet"
     export PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"
 fi
+# Do not send .NET CLI usage statistics to Microsoft.
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Start Hyprland on tty1 only. Other TTYs (tty2, tty3...) stay as plain
 # consoles, so there is always a way to recover from a broken graphical session.
