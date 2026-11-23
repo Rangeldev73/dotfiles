@@ -74,3 +74,12 @@ Desktop, Steam (multilib, prime-run).
 - Verified: gcc and clang++ build and run; valgrind reports a deliberate leak
   (16 bytes definitely lost); gdb stops at a breakpoint in main.
   Versions: gdb 18.1, cmake 4.5.1, ninja 1.13.2, clangd 23.1.5.
+
+## .NET (verified 2026-11-23)
+- Official dotnet-sdk 10 (SDK 10.0.114, runtime 10.0.14 in /usr/share/dotnet).
+- Verified: dotnet new console + dotnet run prints Hello, World!
+- First run warns "An issue was encountered verifying workloads": expected with
+  the distro package, harmless (Godot needs no workloads). Do not run
+  dotnet workload update (it writes to /usr/share/dotnet, owned by pacman).
+- Open: Godot C# projects often target net8.0; running them may need
+  dotnet-runtime-8.0 too. Check in the Godot item.

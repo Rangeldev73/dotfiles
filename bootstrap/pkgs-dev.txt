@@ -25,3 +25,6 @@ cmake
 ninja
 clang
 valgrind
+
+# .NET (C# for Godot): SDK 10 (LTS). godot-mono also depends on it.
+dotnet-sdk
