@@ -21,7 +21,12 @@ Results from 2026-11-21 (Arch installed with loq-install.md).
 - [x] Snapper: pacman creates pre/post snapshots; /.bootbackup holds /boot.
 - [x] TLP: AC -> balanced, battery -> low-power; conservation mode (Long_Life).
 - [ ] NVIDIA idle power: runtime D3 not available (see loq-design.md, GPU).
-- [ ] prime-run with a real GL/Vulkan app or game (dev tools chat).
+- [x] prime-run with a real app (2026-11-23): godot-mono alone uses
+      "Mesa Intel(R) Graphics (RPL-S)"; prime-run godot-mono uses "NVIDIA GeForce
+      RTX 4050 Laptop GPU" (OpenGL, driver 620.73.04). Vulkan still to see
+      (a Forward+ project or a Steam game).
+- [x] Monitor scale: "auto" picked 1.5 and blurred XWayland apps (Godot);
+      set scale = 1 in machines/arch-loq.lua (2026-11-23).
 - [ ] External monitor on HDMI (needs the second drm_devices line).
 - [ ] Conservation cap percentage (watch where charging stops).
 - [ ] GitHub over port 443 on the university network (eduroam blocks port 22):

@@ -15,16 +15,8 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-hl.monitor({
-    output   = "",
-    -- Monitor Virtual-1
-    mode     = "preferred",
-    -- mode = 1280x800@60
-    position = "auto",
-    -- positon = 0x0
-    scale    = "auto",
-    -- scale = 1;
-})
+-- The monitor rule is set below, after the machine file is loaded
+-- (machines/*.lua can set scale).
 
 
 ---------------------
@@ -49,6 +41,16 @@ local gl = machine.gl_prefix or ""
 if machine.drm_devices then
     hl.env("AQ_DRM_DEVICES", machine.drm_devices)
 end
+
+-- Monitors: preferred mode, auto position. Scale comes from the machine file;
+-- "auto" lets Hyprland pick one from the screen PPI (1.5 on the LOQ, which
+-- blurs XWayland apps such as Godot and Steam).
+hl.monitor({
+    output   = "",
+    mode     = "preferred",
+    position = "auto",
+    scale    = machine.scale or "auto",
+})
 
 -- Set programs that you use
 local terminal = gl .. "kitty"
