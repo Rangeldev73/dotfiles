@@ -6,3 +6,5 @@ yay-bin-debug
 # Dev tools (see notes/loq-dev-tools.md).
 # Toolbox installs itself and the IDEs under ~/.local/share/JetBrains/Toolbox.
 jetbrains-toolbox
+# Microsoft build of VS Code (Microsoft marketplace: C# Dev Kit, C/C++, Pylance).
+visual-studio-code-bin

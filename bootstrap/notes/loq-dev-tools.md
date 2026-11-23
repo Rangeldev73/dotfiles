@@ -26,3 +26,12 @@ Desktop, Steam (multilib, prime-run).
   (in @home, so root snapshots and rollbacks do not touch them).
 - Verified: Toolbox and IntelliJ open fine under Hyprland; no login needed.
 - To do: log in to the JetBrains account after Chrome is installed.
+
+## VS Code (verified 2026-11-23)
+- AUR visual-studio-code-bin (Microsoft build and marketplace). Not chosen:
+  code (official repo, Code - OSS with Open VSX, no Microsoft C#/C++/Pylance).
+- Extensions: ~/.vscode/extensions; settings: ~/.config/Code/User.
+- Extra Electron flags go in ~/.config/code-flags.conf (none needed so far).
+- Verified: opens under Hyprland, sharp text, no keyring warning.
+  pacman reported org.freedesktop.secrets as installed (provider not checked yet).
+- To do: Settings Sync login after Chrome is installed.
