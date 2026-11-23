@@ -66,3 +66,11 @@ Desktop, Steam (multilib, prime-run).
   docker.socket active, docker.service inactive until first use, hello-world ok.
 - Note: findmnt with two paths treats them as source and target; use
   findmnt -T <path> once per path.
+
+## C/C++ (verified 2026-11-23)
+- gcc/g++ and make from base-devel; added gdb, cmake, ninja, clang (clangd,
+  clang-format), valgrind. gdb was already installed (pulled by another
+  package); listed explicitly anyway.
+- Verified: gcc and clang++ build and run; valgrind reports a deliberate leak
+  (16 bytes definitely lost); gdb stops at a breakpoint in main.
+  Versions: gdb 18.1, cmake 4.5.1, ninja 1.13.2, clangd 23.1.5.

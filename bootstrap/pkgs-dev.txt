@@ -17,3 +17,11 @@ maven
 docker
 docker-compose
 docker-buildx
+
+# C/C++: gcc and make come with base-devel. clang brings clangd (editor
+# completion) and clang-format; valgrind finds memory errors.
+gdb
+cmake
+ninja
+clang
+valgrind
