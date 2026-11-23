@@ -83,6 +83,18 @@ Desktop, Steam (multilib, prime-run).
   dotnet workload update (it writes to /usr/share/dotnet, owned by pacman).
 - Open: Godot C# projects often target net8.0; running them may need
   dotnet-runtime-8.0 too. Check in the Godot item.
+- .NET 11 SDK (2026-11-23): the game (Ypykuara) pins SDK 11.0.100 in
+  global.json (its decision D-006), and Arch only ships .NET 10. Installed
+  with Microsoft's script, user-local:
+    curl -fsSL https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh
+    bash /tmp/dotnet-install.sh --channel 11.0 --install-dir ~/.dotnet
+  bash/.bash_profile puts ~/.dotnet first on PATH and sets DOTNET_ROOT (before
+  Hyprland starts, so GUI apps see it). Update: run the script again.
+  When Arch packages .NET 11: remove that block and ~/.dotnet.
+  Not chosen: AUR packages (only previews of 11 found, may conflict with the
+  Arch .NET that godot-mono depends on); changing global.json (against D-006).
+- Verified: in ~/projects/Ypykuara the game's CI steps pass with SDK 11.0.100
+  (restore, build -warnaserror, format whitespace/style --verify-no-changes).
 
 ## Python (verified 2026-11-23)
 - System python (3.14.10) plus uv 0.13.9. Projects: uv init / uv add / uv run;

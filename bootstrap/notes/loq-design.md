@@ -152,6 +152,9 @@ files-loq/etc/mkinitcpio.conf.d/10-loq.conf.
 - Bypass charging (outlet without using the battery): unknown for the LOQ.
 
 ## Still to do
+- Visual chat: a beep sounds when deleting text in the terminal. Hypothesis:
+  the readline bell (Backspace on an empty prompt) played by kitty; fix with
+  enable_audio_bell no in kitty.conf, or set bell-style none in ~/.inputrc.
 - Visual chat: with monitor scale 1 (2026-11-23) everything looks too small
   (kitty, rofi, waybar, Godot). Keep scale 1 (sharp XWayland) and raise sizes
   per app: kitty font_size, rofi and waybar font, GTK/Qt font size, Godot
