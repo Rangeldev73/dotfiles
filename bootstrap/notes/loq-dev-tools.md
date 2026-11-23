@@ -156,3 +156,20 @@ Desktop, Steam (multilib, prime-run).
   seahorse lists the entries.
 - To check after the next reboot: the empty-password keyring opens by itself
   (no prompt) and the logins are still there.
+
+## Claude Code and Claude Desktop (2026-11-23)
+- Claude Code: official native installer (curl -fsSL https://claude.ai/install.sh | bash),
+  version 2.1.330, launcher ~/.local/bin/claude, updates itself.
+  ~/.local/bin was not on PATH: added in bash/.bash_profile (not ~/.bashrc as
+  the installer suggests: .bashrc is not versioned and is read after Hyprland).
+- Claude Desktop: AUR claude-desktop 6.28899.6 (not maintained by Anthropic).
+  PKGBUILD reviewed before installing (yay -G claude-desktop):
+  - source: Anthropic's APT pool https://downloads.claude.ai/claude-desktop/apt/stable/...
+    with pinned sha256sums;
+  - extra file claude-desktop.sh: launcher that reads
+    ~/.config/claude-desktop-flags.conf and adds --ozone-platform=wayland on
+    Wayland, then execs /usr/lib/claude-desktop/claude-desktop;
+  - no install= hook;
+  - depends on qemu-system-x86 + edk2-ovmf: Cowork runs its sandbox in a QEMU VM
+    (PKGBUILD comment: upstream lists them under Recommends).
+  Flags file (stow package claude): --password-store=gnome-libsecret.

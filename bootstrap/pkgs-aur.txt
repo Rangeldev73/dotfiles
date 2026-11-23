@@ -10,3 +10,6 @@ jetbrains-toolbox
 visual-studio-code-bin
 # Google Chrome (flags in the chrome stow package).
 google-chrome
+# Claude Desktop: repackages Anthropic's official .deb (downloads.claude.ai);
+# pulls qemu-system-x86 + edk2-ovmf for the Cowork sandbox VM.
+claude-desktop
