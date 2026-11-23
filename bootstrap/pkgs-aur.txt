@@ -1,2 +1,8 @@
+# AUR packages (installed with yay). Lines starting with # are ignored.
+# Comments must be on their own line. Entries ending in -debug are skipped.
 yay-bin
 yay-bin-debug
+
+# Dev tools (see notes/loq-dev-tools.md).
+# Toolbox installs itself and the IDEs under ~/.local/share/JetBrains/Toolbox.
+jetbrains-toolbox

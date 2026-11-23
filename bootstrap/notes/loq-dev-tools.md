@@ -15,3 +15,14 @@ Desktop, Steam (multilib, prime-run).
 - After the first install, the new PATH needs a re-login or: source /etc/profile
 - Verified: java/javac 25.0.5.1, Maven 3.10.0 running on java-25-openjdk.
 - Per-project JDK is chosen in the IDE (Project Structure -> SDK).
+
+## IntelliJ IDEA (verified 2026-11-23)
+- Same setup as on Windows: JetBrains Toolbox (AUR jetbrains-toolbox) and the
+  unified IntelliJ IDEA (free tier, no subscription). Since 2025.3 the free tier
+  includes basic Spring support and the Spring Boot project wizard.
+- Not chosen: intellij-idea-oss (official repo, open-source build with core
+  features only).
+- Toolbox updates itself; it and the IDEs live in ~/.local/share/JetBrains/Toolbox
+  (in @home, so root snapshots and rollbacks do not touch them).
+- Verified: Toolbox and IntelliJ open fine under Hyprland; no login needed.
+- To do: log in to the JetBrains account after Chrome is installed.
