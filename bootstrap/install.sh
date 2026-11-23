@@ -106,7 +106,7 @@ $DRY || sudo -v
 
 # ---------------------------------------------------------------- packages
 step "Updating the system and installing packages"
-mapfile -t PKGS < <(read_list "$HERE/pkgs-common.txt"; read_list "$HERE/pkgs-$PROFILE.txt")
+mapfile -t PKGS < <(read_list "$HERE/pkgs-common.txt"; read_list "$HERE/pkgs-dev.txt"; read_list "$HERE/pkgs-$PROFILE.txt")
 ((${#PKGS[@]})) || die "No packages found in the lists."
 run sudo pacman -Syu
 run sudo pacman -S --needed "${PKGS[@]}"

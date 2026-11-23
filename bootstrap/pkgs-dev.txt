@@ -1,0 +1,13 @@
+# Development tools (official repos). Lines starting with # are ignored.
+# Comments must be on their own line. AUR tools go in pkgs-aur.txt.
+# Decisions and tests: notes/loq-dev-tools.md.
+
+# Java: JDK 25 is the default (archlinux-java), JDK 21 for most projects.
+# Sources and docs let the IDE show the JDK code and Javadoc offline.
+jdk25-openjdk
+openjdk25-src
+openjdk25-doc
+jdk21-openjdk
+openjdk21-src
+openjdk21-doc
+maven
