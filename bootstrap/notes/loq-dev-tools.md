@@ -25,7 +25,7 @@ Desktop, Steam (multilib, prime-run).
 - Toolbox updates itself; it and the IDEs live in ~/.local/share/JetBrains/Toolbox
   (in @home, so root snapshots and rollbacks do not touch them).
 - Verified: Toolbox and IntelliJ open fine under Hyprland; no login needed.
-- To do: log in to the JetBrains account after Chrome is installed.
+- Logged in to the JetBrains account (2026-11-23).
 
 ## VS Code (verified 2026-11-23)
 - AUR visual-studio-code-bin (Microsoft build and marketplace). Not chosen:
@@ -34,7 +34,7 @@ Desktop, Steam (multilib, prime-run).
 - Extra Electron flags go in ~/.config/code-flags.conf (none needed so far).
 - Verified: opens under Hyprland, sharp text, no keyring warning.
   pacman reported org.freedesktop.secrets as installed (provider not checked yet).
-- To do: Settings Sync login after Chrome is installed.
+- Settings Sync logged in (2026-11-23), token in the keyring.
 
 ## Docker (verified 2026-11-23)
 - Packages: docker, docker-compose, docker-buildx (Docker 29.10).
@@ -130,8 +130,8 @@ Desktop, Steam (multilib, prime-run).
 - .NET CLI telemetry turned off: DOTNET_CLI_TELEMETRY_OPTOUT=1 in bash/.bash_profile.
 
 ## Git extras and utilities (verified 2026-11-23)
-- git-lfs 3.8.1 (git lfs install done for the user), gh 2.105.0 (login after
-  Chrome), unzip/zip, curl (already installed), jq 1.8.2, btop 1.4.8.
+- git-lfs 3.8.1 (git lfs install done for the user), gh 2.105.0 (logged in 2026-11-23:
+  gh auth status shows the token in the keyring), unzip/zip, curl (already installed), jq 1.8.2, btop 1.4.8.
 
 ## Chrome and keyring (verified 2026-11-23)
 - AUR google-chrome (command google-chrome-stable). Runs on Wayland natively
@@ -148,3 +148,11 @@ Desktop, Steam (multilib, prime-run).
 - Chrome and VS Code are told to use it (stow packages chrome and vscode):
   --password-store=gnome-libsecret in ~/.config/chrome-flags.conf and
   ~/.config/code-flags.conf (read by the AUR launchers).
+
+## Logins (verified 2026-11-23)
+- Google in Chrome, JetBrains (Toolbox), VS Code Settings Sync and gh
+  (gh auth login: GitHub.com, SSH, skip key upload, web browser).
+- gh auth status: "Logged in to github.com account Rangeldev73 (keyring)";
+  seahorse lists the entries.
+- To check after the next reboot: the empty-password keyring opens by itself
+  (no prompt) and the logins are still there.
