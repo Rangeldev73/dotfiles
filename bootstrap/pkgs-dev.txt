@@ -28,3 +28,8 @@ valgrind
 
 # .NET (C# for Godot): SDK 10 (LTS). godot-mono also depends on it.
 dotnet-sdk
+
+# Python: system python plus uv (per-project .venv, extra Python versions).
+# Global pip install is blocked on Arch (externally managed environment).
+python
+uv

@@ -83,3 +83,12 @@ Desktop, Steam (multilib, prime-run).
   dotnet workload update (it writes to /usr/share/dotnet, owned by pacman).
 - Open: Godot C# projects often target net8.0; running them may need
   dotnet-runtime-8.0 too. Check in the Godot item.
+
+## Python (verified 2026-11-23)
+- System python (3.14.10) plus uv 0.13.9. Projects: uv init / uv add / uv run;
+  each project gets its own .venv. Extra Python versions and the cache live in
+  ~/.local/share/uv/python and ~/.cache/uv (@home).
+- Never use sudo pip install (Arch blocks global pip on purpose).
+- Verified: uv init + uv add requests + uv run in /tmp.
+  The "Failed to hardlink files" warning came from /tmp (tmpfs) vs the cache in
+  @home; hypothesis: no warning for projects inside $HOME.
