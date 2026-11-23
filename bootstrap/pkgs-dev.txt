@@ -52,3 +52,9 @@ zip
 curl
 jq
 btop
+
+# Keyring (Secret Service) for Chrome, VS Code, gh and JetBrains logins.
+# Empty keyring password (autologin; the disk is LUKS), created on first use.
+# seahorse ("Passwords and Keys") manages it.
+gnome-keyring
+seahorse

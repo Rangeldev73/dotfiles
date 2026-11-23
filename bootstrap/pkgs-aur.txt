@@ -8,3 +8,5 @@ yay-bin-debug
 jetbrains-toolbox
 # Microsoft build of VS Code (Microsoft marketplace: C# Dev Kit, C/C++, Pylance).
 visual-studio-code-bin
+# Google Chrome (flags in the chrome stow package).
+google-chrome

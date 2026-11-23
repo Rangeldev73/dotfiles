@@ -132,3 +132,19 @@ Desktop, Steam (multilib, prime-run).
 ## Git extras and utilities (verified 2026-11-23)
 - git-lfs 3.8.1 (git lfs install done for the user), gh 2.105.0 (login after
   Chrome), unzip/zip, curl (already installed), jq 1.8.2, btop 1.4.8.
+
+## Chrome and keyring (verified 2026-11-23)
+- AUR google-chrome (command google-chrome-stable). Runs on Wayland natively
+  (hyprctl clients: xwayland 0).
+- No Secret Service was running (nothing provided org.freedesktop.secrets on
+  D-Bus). Installed gnome-keyring + seahorse; the package enables
+  gnome-keyring-daemon.socket for user sessions.
+- Keyring created on first use with an EMPTY password (decision): with
+  autologin no login password is typed, so a password would mean a prompt on
+  every boot. Trade-off: while the laptop is on and unlocked, any program of
+  the user can read it; at rest it is protected by LUKS.
+  Test: printf ok | secret-tool store --label=test app test;
+        secret-tool lookup app test; secret-tool clear app test
+- Chrome and VS Code are told to use it (stow packages chrome and vscode):
+  --password-store=gnome-libsecret in ~/.config/chrome-flags.conf and
+  ~/.config/code-flags.conf (read by the AUR launchers).
