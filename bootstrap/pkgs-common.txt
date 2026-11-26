@@ -11,6 +11,7 @@ gvfs
 hypridle
 hyprland
 hyprlock
+hyprpaper
 hyprpolkitagent
 intel-ucode
 kitty

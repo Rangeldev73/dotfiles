@@ -46,7 +46,14 @@ kitty, btop, rofi, dunst, VS Code and IntelliJ can use ready-made ports.
 
 ## Pieces, in order
 0. This file.
-1. Wallpaper: bluearch or bluesea; hyprpaper or swww (check current name).
+1. Wallpaper (done 2026-11-26): bluearch.png, drawn by hyprpaper (autostart
+   in hyprland.lua, config hyprpaper.conf). swww was renamed awww (extra);
+   not needed for a static wallpaper. The image is NOT in the repo (public
+   repo, third-party art): it lives in ~/Pictures/Wallpapers/ and
+   ~/Pictures/Wallpapers/current is a symlink to it (verified: hyprpaper
+   follows it, no file extension needed). Change it with
+   ln -sfn <image> ~/Pictures/Wallpapers/current and restart hyprpaper.
+   bluesea is kept for later; looking for a better wallpaper someday.
 2. Base: GTK/Qt font and size, dark theme, icons, cursor (new stow package).
 3. kitty + prompt + no bell (beep when deleting: readline bell, hypothesis).
 4. Hyprland look: borders, gaps, corners, blur, animations.
