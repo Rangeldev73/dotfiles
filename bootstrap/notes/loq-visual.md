@@ -132,7 +132,18 @@ official "GitHub Theme"; JetBrains has GitHub theme plugins).
    (scripts/showcase-clock.sh); figlet tried and dropped (looked bad),
    tty-clock / clock-rs are AUR only. Packages fastfetch, btop (loq.theme),
    cava (30 fps, blue-cyan gradient). decoration.dim_special = 0.
-10. Apps: VS Code, IntelliJ, Godot (Display Scale), Chrome.
+10. Apps:
+   - VS Code (done 2026-11-26): settings.json versioned in the vscode package
+     (rewritten from the old Windows-synced one, backup in
+     ~/.dotfiles-backup/vscode/). GitHub Dark Default theme
+     (GitHub.github-vscode-theme), JetBrainsMono Nerd Font 14 + ligatures,
+     terminal Nerd Font 13 (Starship icons), custom title bar, menu on Alt,
+     no minimap, sticky scroll, trim whitespace on save, telemetry off.
+     Python formatting moved to Ruff (charliermarsh.ruff): the old
+     "ms-python.python" formatter setting did nothing. Godot path
+     /usr/bin/godot-mono. Settings Sync: turn off "Settings" so sync does
+     not bring the old Windows settings back.
+   - IntelliJ, Godot (Display Scale), Chrome: next.
 Optional, at the end: boot visuals (plymouth); touches the boot, decide then.
 
 ## Rules for every piece

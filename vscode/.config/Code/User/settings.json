@@ -1,0 +1,73 @@
+// VS Code user settings (vscode stow package). Look follows the LOQ palette
+// (bootstrap/notes/loq-visual.md, piece 10): GitHub Dark Default theme,
+// JetBrains Mono everywhere. VS Code rewrites this file when settings change
+// in its UI; the edits land in the repo (git diff shows them).
+{
+  // ---------------------------------------------------------------- look
+  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "none",
+  // Compact title bar drawn by VS Code (the native one is tall on Hyprland);
+  // menu bar appears with Alt.
+  "window.titleBarStyle": "custom",
+  "window.menuBarVisibility": "toggle",
+
+  // -------------------------------------------------------------- editor
+  "editor.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace",
+  "editor.fontSize": 14,
+  "editor.lineHeight": 1.5,
+  "editor.fontLigatures": true,
+  "editor.rulers": [80, 120],
+  "editor.minimap.enabled": false,
+  "editor.stickyScroll.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.cursorBlinking": "solid",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.smoothScrolling": true,
+  "editor.linkedEditing": true,
+  "editor.renderWhitespace": "trailing",
+
+  // --------------------------------------------------------------- files
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "explorer.compactFolders": false,
+
+  // ------------------------------------------------------------ terminal
+  // Nerd Font so the Starship icons show up, same size as kitty.
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font'",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.cursorStyle": "line",
+
+  // ----------------------------------------------------------------- git
+  "git.autofetch": true,
+  "git.confirmSync": false,
+
+  // -------------------------------------------------------------- python
+  // Formatting and lint by Ruff (extension charliermarsh.ruff); the old
+  // "ms-python.python" formatter setting no longer formats anything.
+  "python.languageServer": "Pylance",
+  "python.analysis.typeCheckingMode": "basic",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+  "code-runner.runInTerminal": true,
+  "code-runner.ignoreSelection": true,
+
+  // --------------------------------------------------------------- godot
+  "godotTools.editorPath.godot4": "/usr/bin/godot-mono",
+
+  // ------------------------------------------------------------- privacy / AI
+  "telemetry.telemetryLevel": "off",
+  "github.copilot.enable": {
+    "*": false
+  },
+  "claudeCode.preferredLocation": "panel"
+}
