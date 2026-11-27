@@ -5,7 +5,6 @@ bluetui
 brightnessctl
 btrfs-progs
 cliphist
-dunst
 fastfetch
 git
 grim
@@ -40,6 +39,7 @@ snapper
 starship
 stow
 sudo
+swaync
 thunar
 tree
 ttf-jetbrains-mono-nerd

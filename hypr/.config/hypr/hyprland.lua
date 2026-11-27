@@ -76,7 +76,7 @@ hl.on("hyprland.start",function ()
 	hl.exec_cmd("hyprpaper") -- wallpaper, see hyprpaper.conf
 	hl.exec_cmd("~/.config/hypr/scripts/apply-gtk-settings.sh") -- GTK look, see gtk stow package
 	hl.exec_cmd("waybar")
-	hl.exec_cmd("dunst")
+	hl.exec_cmd("swaync") -- notifications + side panel (bell in waybar)
 	hl.exec_cmd("nm-applet --indicator") -- Wi-Fi icon in the waybar tray
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")

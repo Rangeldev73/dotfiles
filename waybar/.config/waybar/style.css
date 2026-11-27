@@ -51,6 +51,7 @@ tooltip label {
 #pulseaudio,
 #battery,
 #idle_inhibitor,
+#custom-notification,
 #tray,
 #custom-power {
     padding: 0 10px;
@@ -104,4 +105,16 @@ tooltip label {
 #custom-power {
     color: #7dcfff;
     padding-right: 14px;
+}
+
+/* swaync bell: dim when empty, cyan with news, red-ish when DND hides news. */
+#custom-notification {
+    color: #484f58;
+}
+#custom-notification.notification {
+    color: #7dcfff;
+}
+#custom-notification.dnd-none,
+#custom-notification.dnd-notification {
+    color: #ff7b72;
 }

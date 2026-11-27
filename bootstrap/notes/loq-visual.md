@@ -99,7 +99,14 @@ official "GitHub Theme"; JetBrains has GitHub theme plugins).
    Wallpaper path is absolute (/home/rangel/...): rofi does not expand ~ or
    ${HOME} inside url() (tested; JPG and PNG both load). Old 52-byte
    ~/.config/rofi/config.rasi moved to ~/.dotfiles-backup/.
-7. Notifications: dunst or swaync (new stow package).
+7. Notifications (done 2026-11-26): swaync replaces dunst (removed). swaync
+   package: config.json (top right, 420 px pop-ups, 6 s / 4 s low / critical
+   stays, side panel 460 px with title + Clear all, Do not disturb, list,
+   mpris) and style.css with overrides only (verified in swaync v0.12.6
+   source: the packaged CSS loads first, the user CSS on top). Cyan border,
+   red for critical. Waybar bell (custom/notification, from the swaync
+   README): click = panel, right click = Do not disturb (bell turns red).
+   Plain dunst rejected: no history, no one-click Do not disturb.
 8. hyprlock + hypridle (into the autostart; no rgb:kbd_backlight on the LOQ;
    review the 30 min suspend) + keybind to lock the screen.
 9. Showcase workspace (configs + script + keybind).
