@@ -1,0 +1,18 @@
+/* rofi: app launcher (Super+R) and lists (clipboard: Super+Shift+V).
+ * Piece 6 of bootstrap/notes/loq-visual.md. Themes in themes/:
+ *   launcher.rasi  default, two panels with the wallpaper (style B)
+ *   list.rasi      plain centred list for text menus (style A)
+ *   loq-base.rasi  palette + shared item style */
+configuration {
+    modi:            "drun,run,window";
+    show-icons:      true;
+    icon-theme:      "Papirus-Dark";
+    font:            "JetBrainsMono Nerd Font 12";
+    terminal:        "kitty";
+    drun-display-format: "{name}";
+    display-drun:    "apps";
+    display-run:     "run";
+    display-window:  "window";
+}
+
+@theme "launcher"

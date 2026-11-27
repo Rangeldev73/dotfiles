@@ -1,0 +1,72 @@
+/* Palette (GitHub Dark + ice cyan, see notes/loq-visual.md) and the item
+ * style shared by launcher.rasi and list.rasi. */
+* {
+    bg:      #0d1117;
+    deep:    #010409;
+    raised:  #161b22;
+    line:    #30363d;
+    fg:      #c9d1d9;
+    muted:   #7d8590;
+    accent:  #7dcfff;
+    sel:     #1f6feb;
+    sel-fg:  #ffffff;
+    alert:   #ff7b72;
+
+    background-color: transparent;
+    text-color:       @fg;
+    font:             "JetBrainsMono Nerd Font 12";
+}
+
+window {
+    border:           2px;
+    border-color:     @accent;
+    border-radius:    4px;
+    background-color: @bg;
+}
+
+listview {
+    columns:      1;
+    spacing:      6px;
+    scrollbar:    false;
+    fixed-height: true;
+    cursor:       "default";
+}
+
+element {
+    padding:       8px 12px;
+    spacing:       14px;
+    border-radius: 4px;
+    cursor:        pointer;
+}
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
+    text-color:       @fg;
+}
+element selected.normal {
+    background-color: @sel;
+    text-color:       @sel-fg;
+}
+element normal.urgent,
+element alternate.urgent,
+element selected.urgent {
+    text-color: @alert;
+}
+element-icon {
+    size:   24px;
+    cursor: inherit;
+}
+element-text {
+    vertical-align: 0.5;
+    text-color:     inherit;
+    cursor:         inherit;
+}
+
+message {
+    padding:          8px 12px;
+    border-radius:    4px;
+    background-color: @raised;
+}
+textbox {
+    text-color: @fg;
+}

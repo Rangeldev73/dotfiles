@@ -1,0 +1,35 @@
+/* Style A: plain centred list with a terminal-like prompt (clipboard and
+ * other text menus). The -p prompt text shows on the right. */
+@import "loq-base"
+
+window {
+    width:   600px;
+    padding: 16px;
+}
+
+mainbox {
+    spacing:  14px;
+    children: [ inputbar, message, listview ];
+}
+
+inputbar {
+    padding:          10px 14px;
+    spacing:          10px;
+    border-radius:    4px;
+    background-color: @raised;
+    children:         [ textbox-prompt-colon, entry, prompt ];
+}
+textbox-prompt-colon {
+    str:        "❯";
+    text-color: @accent;
+}
+entry {
+    cursor: text;
+}
+prompt {
+    text-color: @muted;
+}
+
+listview {
+    lines: 10;
+}

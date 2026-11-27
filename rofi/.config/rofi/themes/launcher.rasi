@@ -1,0 +1,68 @@
+/* Style B: left panel with the current wallpaper, search and mode buttons;
+ * app list on the right. */
+@import "loq-base"
+
+window {
+    width: 800px;
+}
+
+mainbox {
+    orientation: horizontal;
+    children:    [ imagebox, listbox ];
+}
+
+imagebox {
+    width:            300px;
+    padding:          18px;
+    spacing:          18px;
+    orientation:      vertical;
+    /* Full path on purpose: rofi does not expand ~ or ${HOME} inside url()
+     * (tested 2026-11-26, rofi 2.1.1). "current" is the wallpaper symlink. */
+    background-image: url("/home/rangel/Pictures/Wallpapers/current", height);
+    children:         [ inputbar, dummy, mode-switcher ];
+}
+
+inputbar {
+    padding:          10px 12px;
+    spacing:          10px;
+    border-radius:    4px;
+    background-color: @deep;
+    children:         [ textbox-prompt-colon, entry ];
+}
+textbox-prompt-colon {
+    str:        "";
+    text-color: @muted;
+}
+entry {
+    placeholder:       "Search";
+    placeholder-color: @muted;
+    cursor:            text;
+}
+
+dummy {
+    expand: true;
+}
+
+mode-switcher {
+    spacing: 8px;
+}
+button {
+    padding:          8px;
+    border-radius:    4px;
+    background-color: @deep;
+    text-color:       @muted;
+    cursor:           pointer;
+}
+button selected {
+    background-color: @sel;
+    text-color:       @sel-fg;
+}
+
+listbox {
+    padding:  20px;
+    spacing:  10px;
+    children: [ message, listview ];
+}
+listview {
+    lines: 8;
+}

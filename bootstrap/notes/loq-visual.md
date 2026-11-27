@@ -90,7 +90,15 @@ official "GitHub Theme"; JetBrains has GitHub theme plugins).
    kitty (class floating-tui, window rule in hyprland.lua); volume ->
    pavucontrol. Icons are Nerd Font glyphs coloured with Pango <span>.
    Rejected: B (pills, "islands" look), C (icons only, hides CPU/RAM numbers).
-6. rofi: launcher, clipboard, power menu (new stow package).
+6. rofi (done 2026-11-26): rofi package, rofi 2.1.1. Launcher (Super+R) =
+   style B, two panels: wallpaper on the left (themes/launcher.rasi), apps
+   with Papirus icons on the right, apps/run/window buttons. Text lists =
+   style A (themes/list.rasi), used by the clipboard (Super+Shift+V uses
+   -theme list). Shared palette and item style: themes/loq-base.rasi.
+   C (dmenu strip) rejected. The power menu stays in waybar.
+   Wallpaper path is absolute (/home/rangel/...): rofi does not expand ~ or
+   ${HOME} inside url() (tested; JPG and PNG both load). Old 52-byte
+   ~/.config/rofi/config.rasi moved to ~/.dotfiles-backup/.
 7. Notifications: dunst or swaync (new stow package).
 8. hyprlock + hypridle (into the autostart; no rgb:kbd_backlight on the LOQ;
    review the 30 min suspend) + keybind to lock the screen.
