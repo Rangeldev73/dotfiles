@@ -64,14 +64,21 @@ official "GitHub Theme"; JetBrains has GitHub theme plugins).
    bluesea is kept for later; looking for a better wallpaper someday.
 2. Base: GTK/Qt font and size, dark theme, icons, cursor (new stow package).
 3. kitty + prompt (done 2026-11-26): kitty package (kitty.conf +
-   loq-colors.conf, GitHub Dark 16 colours), JetBrainsMono Nerd Font 14 pt
-   (tested 12, then one Ctrl+Shift+= step), opacity 0.90, padding 10.
+   loq-colors.conf, GitHub Dark 16 colours), JetBrainsMono Nerd Font 13 pt
+   (tested 12 and 14, settled on 13), opacity 0.90, padding 10.
    Fonts compared with real renders: JetBrains Mono kept (same as GTK and
    IntelliJ); Iosevka Term (narrow, huge package) and Geist Mono rejected.
    Prompt: Starship (starship package, one info line + input line); bash
    package now versions .bashrc (old one in ~/.dotfiles-backup/).
    Bell: verified gone with enable_audio_bell no (Backspace on empty prompt).
-4. Hyprland look: borders, gaps, corners, blur, animations.
+4. Hyprland look (done 2026-11-26): style "B, balanced" in
+   hypr/.config/hypr/theme.lua (hyprland.lua only does require("theme")):
+   gaps 4/8, border 2 px solid #7dcfff active / #30363d inactive, rounding 4,
+   no shadow, blur size 4 passes 2, short animations without bounce
+   (0.15-0.2 s). Rejected: A (1 px border, hard to see the active window),
+   C (cyan glow = coloured shadow, extra GPU, "islands" look).
+   Touchpad: 3-finger horizontal swipe switches workspaces (hl.gesture in
+   hyprland.lua, already there).
 5. waybar: clean-up, style, new modules (check that bluez is installed).
 6. rofi: launcher, clipboard, power menu (new stow package).
 7. Notifications: dunst or swaync (new stow package).
