@@ -107,8 +107,19 @@ official "GitHub Theme"; JetBrains has GitHub theme plugins).
    red for critical. Waybar bell (custom/notification, from the swaync
    README): click = panel, right click = Do not disturb (bell turns red).
    Plain dunst rejected: no history, no one-click Do not disturb.
-8. hyprlock + hypridle (into the autostart; no rgb:kbd_backlight on the LOQ;
-   review the 30 min suspend) + keybind to lock the screen.
+8. Lock and idle (done 2026-11-26):
+   - hyprlock.conf, style "C, side panel" (same family as the rofi launcher):
+     640 px #0d1117 panel + cyan divider over the "current" wallpaper (full
+     path), 24 h clock, English date (LC_TIME=C), user/host/wm/battery lines,
+     password field cyan / blue while checking / red on failure. Rejected:
+     A (blurred wallpaper, centred clock), B (sharp wallpaper, corner clock).
+   - hypridle.conf, profile "B, balanced": dim 5 min, lock 10, screen off 11,
+     suspend 20 only on battery (scripts/suspend-on-battery.sh reads
+     /sys/class/power_supply/ACAD/online). Lock before sleep/lid close.
+     No kbd_backlight listener (does not exist on the LOQ). Started from the
+     hyprland.lua autostart; the waybar coffee pauses it.
+   - Super+L locks (pidof hyprlock || hyprlock).
+   - Tested with a TTY2 login open; rescue: pkill -USR1 hyprlock (unlocks).
 9. Showcase workspace (configs + script + keybind).
 10. Apps: VS Code, IntelliJ, Godot (Display Scale), Chrome.
 Optional, at the end: boot visuals (plymouth); touches the boot, decide then.

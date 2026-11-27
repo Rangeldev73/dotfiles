@@ -75,6 +75,7 @@ local menu        = "rofi -show drun"
 hl.on("hyprland.start",function ()
 	hl.exec_cmd("hyprpaper") -- wallpaper, see hyprpaper.conf
 	hl.exec_cmd("~/.config/hypr/scripts/apply-gtk-settings.sh") -- GTK look, see gtk stow package
+	hl.exec_cmd("hypridle") -- idle: dim, lock, screen off, suspend on battery
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("swaync") -- notifications + side panel (bell in waybar)
 	hl.exec_cmd("nm-applet --indicator") -- Wi-Fi icon in the waybar tray
@@ -237,6 +238,7 @@ local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("pidof hyprlock || hyprlock")) -- lock the screen
 hl.bind("Print", hl.dsp.exec_cmd([[mkdir -p ~/Pictures/Screenshots && f=~/Pictures/Screenshots/$(date +%F_%H-%M-%S).png && grim -g "$(slurp)" "$f" && wl-copy < "$f"]]))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd([[mkdir -p ~/Pictures/Screenshots && f=~/Pictures/Screenshots/$(date +%F_%H-%M-%S).png && grim "$f" && wl-copy < "$f"]]))
 hl.bind(mainMod .. "+SHIFT + V", hl.dsp.exec_cmd([[cliphist list | rofi -dmenu -p clipboard -theme list | cliphist decode | wl-copy]]))
