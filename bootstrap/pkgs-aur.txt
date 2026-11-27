@@ -13,3 +13,7 @@ google-chrome
 # Claude Desktop: repackages Anthropic's official .deb (downloads.claude.ai);
 # pulls qemu-system-x86 + edk2-ovmf for the Cowork sandbox VM.
 claude-desktop
+
+# Visual (see notes/loq-visual.md). Cursor theme; repackages the upstream
+# release from github.com/ful1e5/Bibata_Cursor (PKGBUILD read 2026-11-26).
+bibata-cursor-theme-bin

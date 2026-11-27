@@ -1,3 +1,4 @@
+adw-gtk-theme
 base
 base-devel
 brightnessctl
@@ -24,6 +25,7 @@ neovim
 network-manager-applet
 networkmanager
 openssh
+papirus-icon-theme
 pavucontrol
 pipewire-pulse
 playerctl

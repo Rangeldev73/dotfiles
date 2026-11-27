@@ -74,6 +74,7 @@ local menu        = "rofi -show drun"
 -- end)
 hl.on("hyprland.start",function ()
 	hl.exec_cmd("hyprpaper") -- wallpaper, see hyprpaper.conf
+	hl.exec_cmd("~/.config/hypr/scripts/apply-gtk-settings.sh") -- GTK look, see gtk stow package
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("dunst")
 	hl.exec_cmd("nm-applet --indicator") -- Wi-Fi icon in the waybar tray
@@ -89,6 +90,9 @@ end)
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
+-- Cursor: Bibata (AUR bibata-cursor-theme-bin). It has no hyprcursor
+-- version, so Hyprland falls back to these XCursor variables.
+hl.env("XCURSOR_THEME", "Bibata-Modern-Ice")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
