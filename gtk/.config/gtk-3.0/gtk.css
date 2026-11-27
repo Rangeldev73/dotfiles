@@ -1,45 +1,41 @@
-/* Tokyo Night (Night) colours for adw-gtk3-dark (GTK 3 apps: Thunar, ...).
- * adw-gtk3 reads these libadwaita "named colors".
- * Accent/state hex values from folke/tokyonight.nvim lua/tokyonight/colors
- * (night.lua + storm.lua, commit cdc07ac). Plan: notes/loq-visual.md.
+/* LOQ palette for adw-gtk3-dark (GTK 3 apps: Thunar, ...).
+ * Base: GitHub Dark (Primer) + ice cyan accent. adw-gtk3 reads these
+ * libadwaita "named colors". Palette and reasons: notes/loq-visual.md.
  * Undo: delete this file and reopen the app. */
 
-/* Accent: ice cyan for lines/text (accent_color). Filled selections use a
- * deep cyan-blue with white text: Thunar draws light text on the selection
- * whatever the fg setting, and light text on #7dcfff was unreadable
- * (contrast 1.06). #1d5f85 + white = 6.9:1. */
+/* Accent: ice cyan for lines/text. Filled selections: Primer blue with
+ * white text (Thunar draws light text on selections whatever the fg). */
 @define-color accent_color #7dcfff;
-@define-color accent_bg_color #1d5f85;
+@define-color accent_bg_color #1f6feb;
 @define-color accent_fg_color #ffffff;
-/* GTK 3 apps (Thunar) take selected text from these older names. */
-@define-color theme_selected_bg_color #1d5f85;
+/* GTK 3 apps (Thunar) take selected colours from these older names. */
+@define-color theme_selected_bg_color #1f6feb;
 @define-color theme_selected_fg_color #ffffff;
 
-/* Surfaces: own blue-black backgrounds (Tokyo Night bg looked purple);
- * see notes/loq-visual.md. */
-@define-color window_bg_color #0b0e14;
-@define-color window_fg_color #c0caf5;
-@define-color view_bg_color #0f131a;
-@define-color view_fg_color #c0caf5;
-@define-color headerbar_bg_color #0b0e14;
-@define-color headerbar_fg_color #c0caf5;
-@define-color headerbar_backdrop_color @window_bg_color;
-@define-color sidebar_bg_color #07090d;
-@define-color sidebar_fg_color #a9b1d6;
-@define-color sidebar_backdrop_color #07090d;
-@define-color card_bg_color #151a23;
-@define-color card_fg_color #c0caf5;
-@define-color dialog_bg_color #151a23;
-@define-color dialog_fg_color #c0caf5;
-@define-color popover_bg_color #151a23;
-@define-color popover_fg_color #c0caf5;
+/* Surfaces (Primer canvas colours). */
+@define-color window_bg_color #0d1117;
+@define-color window_fg_color #c9d1d9;
+@define-color view_bg_color #0d1117;
+@define-color view_fg_color #c9d1d9;
+@define-color headerbar_bg_color #010409;
+@define-color headerbar_fg_color #c9d1d9;
+@define-color headerbar_backdrop_color #010409;
+@define-color sidebar_bg_color #010409;
+@define-color sidebar_fg_color #c9d1d9;
+@define-color sidebar_backdrop_color #010409;
+@define-color card_bg_color #161b22;
+@define-color card_fg_color #c9d1d9;
+@define-color dialog_bg_color #161b22;
+@define-color dialog_fg_color #c9d1d9;
+@define-color popover_bg_color #161b22;
+@define-color popover_fg_color #c9d1d9;
 
-/* States (pink-red only for alerts). */
-@define-color destructive_color #f7768e;
-@define-color destructive_bg_color #db4b4b;
-@define-color destructive_fg_color #c0caf5;
-@define-color error_color #f7768e;
-@define-color error_bg_color #db4b4b;
-@define-color error_fg_color #c0caf5;
-@define-color success_color #9ece6a;
-@define-color warning_color #e0af68;
+/* States (red only for alerts). */
+@define-color destructive_color #ff7b72;
+@define-color destructive_bg_color #da3633;
+@define-color destructive_fg_color #ffffff;
+@define-color error_color #ff7b72;
+@define-color error_bg_color #da3633;
+@define-color error_fg_color #ffffff;
+@define-color success_color #3fb950;
+@define-color warning_color #d29922;

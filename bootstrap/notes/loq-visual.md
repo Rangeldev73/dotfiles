@@ -11,31 +11,27 @@ done, tested and committed on its own, in this order.
   piece (bar, windows, rofi, notifications, lock screen).
 - Monitor scale stays 1 (sharp XWayland). Sizes are raised per app.
 
-## Palette: Tokyo Night "Night", darkened
-Base: Tokyo Night (folke/tokyonight.nvim extras, enkia's VS Code theme), so
-kitty, btop, rofi, dunst, VS Code and IntelliJ can use ready-made ports.
-- Backgrounds: OWN blue-black tones, not Tokyo Night's (decided 2026-11-26:
-  #1a1b26 has red > green and looks purple/indigo next to black). Blue-black
-  = green >= red, blue a bit higher. Used by every piece (GTK, kitty, bar,
-  rofi, notifications, lock):
-    #07090d  deepest  (GTK sidebar, waybar)
-    #0b0e14  base     (windows, header bars, terminal)
-    #0f131a  content  (file lists, views)
-    #151a23  raised   (menus, dialogs, cards, popups)
+## Palette: GitHub Dark (Primer) + ice cyan accent
+History: started on Tokyo Night (2026-11-26) and dropped the same day. Not
+only its background (#1a1b26, red > green) but its text (#c0caf5 lavender),
+blue (#7aa2f7 periwinkle), comments (#565f89) and keywords (#bb9af7) lean
+violet. The goal is black + dark blue + light blue, no purple.
+
+Base: GitHub Dark / Primer (kitty ships it as GitHub_Dark; VS Code has the
+official "GitHub Theme"; JetBrains has GitHub theme plugins).
+- Backgrounds:
+    #010409  deepest  (header bars, GTK sidebar, waybar)
+    #0d1117  base     (windows, views, terminal)
+    #161b22  raised   (menus, dialogs, cards, popups)
+    #30363d  border / inactive lines
   Pure #000000 was rejected: areas would merge into one block.
-- Filled selection: #1d5f85 (deep cyan-blue) with white text, 6.9:1.
-  Ice cyan #7dcfff stays for lines, borders and accent text; light text on a
-  #7dcfff fill measured 1.06:1 (unreadable) in Thunar.
-- Main accent: ice cyan #7dcfff (matches the bluearch wallpaper glow).
-- Second accent: blue #7aa2f7 (selection, important text).
-- Alert only: pink-red #f7768e (critical battery, high temperature, urgent
-  workspace). Never used as decoration.
-- Apps with a ready theme (VS Code, IntelliJ, btop, cava) keep the theme's own
-  background; the small difference is accepted.
-- Accent/text/state hex values come from folke/tokyonight.nvim
-  lua/tokyonight/colors/storm.lua + night.lua (commit cdc07ac): fg #c0caf5,
-  fg_dark #a9b1d6, comment #565f89, cyan #7dcfff, blue #7aa2f7, red #f7768e,
-  red1 #db4b4b, green #9ece6a, yellow #e0af68.
+- Text: #c9d1d9 (main), #7d8590 (muted, comments).
+- Accent (lines, borders, prompt, cursor): ice cyan #7dcfff, the glow of the
+  bluearch wallpaper. Blues: #58a6ff, #79c0ff (light), #a5d6ff (strings).
+- Filled selection: #1f6feb with white text. A #7dcfff fill with Thunar's
+  light text measured 1.06:1 (unreadable).
+- Alerts only: red #ff7b72 (fill #da3633). Success #3fb950, warning #d29922.
+- Apps with a ready theme (VS Code, IntelliJ, btop) use their GitHub Dark port.
 
 ## Layout decisions
 - Bar: full width, flush to the top (not floating), thin (~28 px), solid dark

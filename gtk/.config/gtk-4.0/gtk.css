@@ -1,43 +1,33 @@
-/* Tokyo Night (Night) colours for GTK 4 / libadwaita apps.
- * libadwaita 1.6+ uses CSS variables (same values as gtk-3.0/gtk.css).
- * Accent/state hex values from folke/tokyonight.nvim lua/tokyonight/colors
- * (night.lua + storm.lua, commit cdc07ac). Plan: notes/loq-visual.md.
+/* LOQ palette for GTK 4 / libadwaita apps (CSS variables, libadwaita 1.6+).
+ * Same values as gtk-3.0/gtk.css: GitHub Dark (Primer) + ice cyan accent.
+ * Palette and reasons: notes/loq-visual.md.
  * Undo: delete this file and reopen the app. */
 :root {
-  /* Accent: ice cyan for lines/text (accent_color). Filled selections use a
- * deep cyan-blue with white text: Thunar draws light text on the selection
- * whatever the fg setting, and light text on #7dcfff was unreadable
- * (contrast 1.06). #1d5f85 + white = 6.9:1. */
   --accent-color: #7dcfff;
-  --accent-bg-color: #1d5f85;
+  --accent-bg-color: #1f6feb;
   --accent-fg-color: #ffffff;
-
-  /* Surfaces: own blue-black backgrounds (Tokyo Night bg looked purple);
- * see notes/loq-visual.md. */
-  --window-bg-color: #0b0e14;
-  --window-fg-color: #c0caf5;
-  --view-bg-color: #0f131a;
-  --view-fg-color: #c0caf5;
-  --headerbar-bg-color: #0b0e14;
-  --headerbar-fg-color: #c0caf5;
-  --headerbar-backdrop-color: #0b0e14;
-  --sidebar-bg-color: #07090d;
-  --sidebar-fg-color: #a9b1d6;
-  --sidebar-backdrop-color: #07090d;
-  --card-bg-color: #151a23;
-  --card-fg-color: #c0caf5;
-  --dialog-bg-color: #151a23;
-  --dialog-fg-color: #c0caf5;
-  --popover-bg-color: #151a23;
-  --popover-fg-color: #c0caf5;
-
-  /* States (pink-red only for alerts). */
-  --destructive-color: #f7768e;
-  --destructive-bg-color: #db4b4b;
-  --destructive-fg-color: #c0caf5;
-  --error-color: #f7768e;
-  --error-bg-color: #db4b4b;
-  --error-fg-color: #c0caf5;
-  --success-color: #9ece6a;
-  --warning-color: #e0af68;
+  --window-bg-color: #0d1117;
+  --window-fg-color: #c9d1d9;
+  --view-bg-color: #0d1117;
+  --view-fg-color: #c9d1d9;
+  --headerbar-bg-color: #010409;
+  --headerbar-fg-color: #c9d1d9;
+  --headerbar-backdrop-color: #010409;
+  --sidebar-bg-color: #010409;
+  --sidebar-fg-color: #c9d1d9;
+  --sidebar-backdrop-color: #010409;
+  --card-bg-color: #161b22;
+  --card-fg-color: #c9d1d9;
+  --dialog-bg-color: #161b22;
+  --dialog-fg-color: #c9d1d9;
+  --popover-bg-color: #161b22;
+  --popover-fg-color: #c9d1d9;
+  --destructive-color: #ff7b72;
+  --destructive-bg-color: #da3633;
+  --destructive-fg-color: #ffffff;
+  --error-color: #ff7b72;
+  --error-bg-color: #da3633;
+  --error-fg-color: #ffffff;
+  --success-color: #3fb950;
+  --warning-color: #d29922;
 }
