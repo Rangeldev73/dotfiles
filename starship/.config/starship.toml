@@ -1,0 +1,55 @@
+# Starship prompt (started from ~/.bashrc). Plan: notes/loq-visual.md.
+# One info line + the input line:
+#   ~/projects/linkpulse on  main [!2] via  v25 took 12s
+#   ❯
+# Modules only show up when they apply (git repo, Java project, slow command).
+
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = false
+palette = "loq"
+
+[palettes.loq]
+accent = "#7dcfff"
+blue   = "#58a6ff"
+light  = "#79c0ff"
+muted  = "#7d8590"
+alert  = "#ff7b72"
+
+[directory]
+style = "bold accent"
+truncation_length = 3
+truncate_to_repo = false
+
+[git_branch]
+symbol = " "
+style = "blue"
+format = "[on](muted) [$symbol$branch]($style) "
+
+[git_status]
+style = "alert"
+
+[java]
+symbol = " "
+style = "alert"
+format = "[via](muted) [$symbol($version )]($style)"
+
+[nodejs]
+style = "light"
+format = "[via](muted) [$symbol($version )]($style)"
+
+[dotnet]
+style = "light"
+format = "[via](muted) [$symbol($version )]($style)"
+
+[python]
+style = "light"
+format = '[via](muted) [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[cmd_duration]
+min_time = 2000
+style = "light"
+format = "[took](muted) [$duration]($style) "
+
+[character]
+success_symbol = "[❯](bold accent)"
+error_symbol   = "[❯](bold alert)"

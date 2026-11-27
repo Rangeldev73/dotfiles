@@ -36,6 +36,7 @@ rsync
 slurp
 snap-pac
 snapper
+starship
 stow
 sudo
 thunar

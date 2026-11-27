@@ -63,7 +63,14 @@ official "GitHub Theme"; JetBrains has GitHub theme plugins).
    ln -sfn <image> ~/Pictures/Wallpapers/current and restart hyprpaper.
    bluesea is kept for later; looking for a better wallpaper someday.
 2. Base: GTK/Qt font and size, dark theme, icons, cursor (new stow package).
-3. kitty + prompt + no bell (beep when deleting: readline bell, hypothesis).
+3. kitty + prompt (done 2026-11-26): kitty package (kitty.conf +
+   loq-colors.conf, GitHub Dark 16 colours), JetBrainsMono Nerd Font 14 pt
+   (tested 12, then one Ctrl+Shift+= step), opacity 0.90, padding 10.
+   Fonts compared with real renders: JetBrains Mono kept (same as GTK and
+   IntelliJ); Iosevka Term (narrow, huge package) and Geist Mono rejected.
+   Prompt: Starship (starship package, one info line + input line); bash
+   package now versions .bashrc (old one in ~/.dotfiles-backup/).
+   Bell: verified gone with enable_audio_bell no (Backspace on empty prompt).
 4. Hyprland look: borders, gaps, corners, blur, animations.
 5. waybar: clean-up, style, new modules (check that bluez is installed).
 6. rofi: launcher, clipboard, power menu (new stow package).
