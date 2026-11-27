@@ -1,6 +1,7 @@
 adw-gtk-theme
 base
 base-devel
+bluetui
 brightnessctl
 btrfs-progs
 cliphist

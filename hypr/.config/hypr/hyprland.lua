@@ -327,6 +327,16 @@ hl.window_rule({
 -- })
 -- overlayLayerRule:set_enabled(false)
 
+-- Small terminal apps opened from waybar (nmtui, bluetui) float centred.
+hl.window_rule({
+    name  = "floating-tui",
+    match = { class = "^floating-tui$" },
+
+    float  = true,
+    size   = "900 600",
+    center = true,
+})
+
 -- Hyprland-run windowrule
 hl.window_rule({
     name  = "move-hyprland-run",

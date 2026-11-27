@@ -79,7 +79,17 @@ official "GitHub Theme"; JetBrains has GitHub theme plugins).
    C (cyan glow = coloured shadow, extra GPU, "islands" look).
    Touchpad: 3-finger horizontal swipe switches workspaces (hl.gesture in
    hyprland.lua, already there).
-5. waybar: clean-up, style, new modules (check that bluez is installed).
+5. waybar (done 2026-11-26): style "A, solid strip" (#010409, 1 px line,
+   active workspace cyan with underline). Left: workspaces, mpris. Centre:
+   clock. Right: cpu, memory, temperature, network, bluetooth, pulseaudio,
+   battery (BAT1), idle_inhibitor, tray, power menu (power_menu.xml). All bar
+   texts and menu labels in English (changed from Portuguese on request). Removed: mpd, language, power-profiles-daemon, bat2,
+   backlight, keyboard-state. Temperature: hwmon-name coretemp (the default
+   acpitz board sensor read ~28 C; hwmonN numbers change between boots).
+   Clicks: Wi-Fi -> nmtui, Bluetooth -> bluetui (extra), both in a floating
+   kitty (class floating-tui, window rule in hyprland.lua); volume ->
+   pavucontrol. Icons are Nerd Font glyphs coloured with Pango <span>.
+   Rejected: B (pills, "islands" look), C (icons only, hides CPU/RAM numbers).
 6. rofi: launcher, clipboard, power menu (new stow package).
 7. Notifications: dunst or swaync (new stow package).
 8. hyprlock + hypridle (into the autostart; no rgb:kbd_backlight on the LOQ;
