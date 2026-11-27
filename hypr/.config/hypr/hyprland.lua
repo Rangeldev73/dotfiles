@@ -239,6 +239,7 @@ local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("pidof hyprlock || hyprlock")) -- lock the screen
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("~/.config/hypr/scripts/showcase.sh")) -- showcase dashboard
 hl.bind("Print", hl.dsp.exec_cmd([[mkdir -p ~/Pictures/Screenshots && f=~/Pictures/Screenshots/$(date +%F_%H-%M-%S).png && grim -g "$(slurp)" "$f" && wl-copy < "$f"]]))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd([[mkdir -p ~/Pictures/Screenshots && f=~/Pictures/Screenshots/$(date +%F_%H-%M-%S).png && grim "$f" && wl-copy < "$f"]]))
 hl.bind(mainMod .. "+SHIFT + V", hl.dsp.exec_cmd([[cliphist list | rofi -dmenu -p clipboard -theme list | cliphist decode | wl-copy]]))
@@ -337,6 +338,14 @@ hl.window_rule({
     float  = true,
     size   = "900 600",
     center = true,
+})
+
+-- Showcase dashboard (Super+D): its kitty lives on a special workspace.
+hl.window_rule({
+    name  = "showcase",
+    match = { class = "^showcase$" },
+
+    workspace = "special:showcase", -- not silent: opening it shows it
 })
 
 -- Hyprland-run windowrule

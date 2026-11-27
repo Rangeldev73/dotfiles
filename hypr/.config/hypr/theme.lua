@@ -24,6 +24,10 @@ hl.config({
         rounding       = 4,
         rounding_power = 2,
 
+        -- Special workspaces (Super+D showcase, Super+S) do not darken the
+        -- windows behind them.
+        dim_special = 0,
+
         active_opacity   = 1.0,
         inactive_opacity = 1.0,
 

@@ -1,0 +1,12 @@
+; cava: audio bars for the showcase. Keys from cava 0.10.7 example_files/config.
+; Lower framerate than the default 60 to save CPU/battery.
+[general]
+framerate = 30
+bar_width = 2
+bar_spacing = 1
+
+[color]
+gradient = 1
+gradient_color_1 = '#1f6feb'
+gradient_color_2 = '#58a6ff'
+gradient_color_3 = '#7dcfff'

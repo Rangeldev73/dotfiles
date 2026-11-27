@@ -4,7 +4,9 @@ base-devel
 bluetui
 brightnessctl
 btrfs-progs
+cava
 cliphist
+cmatrix
 fastfetch
 git
 grim

@@ -1,0 +1,33 @@
+// fastfetch: colours of the LOQ palette (notes/loq-visual.md).
+// Colours are raw ANSI codes: 38;2;R;G;B (ice cyan 125,207,255; blue 88,166,255).
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "builtin",
+        "source": "arch",
+        "color": { "1": "38;2;125;207;255", "2": "38;2;88;166;255" }
+    },
+    "display": {
+        "separator": "  ",
+        "color": { "keys": "38;2;88;166;255", "title": "38;2;125;207;255" }
+    },
+    "modules": [
+        "title",
+        "separator",
+        "os",
+        "kernel",
+        "uptime",
+        "packages",
+        "wm",
+        "shell",
+        "terminal",
+        "terminalfont",
+        "cpu",
+        "gpu",
+        "memory",
+        "disk",
+        "battery",
+        "break",
+        "colors"
+    ]
+}

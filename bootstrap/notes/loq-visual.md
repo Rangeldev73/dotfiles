@@ -120,7 +120,18 @@ official "GitHub Theme"; JetBrains has GitHub theme plugins).
      hyprland.lua autostart; the waybar coffee pauses it.
    - Super+L locks (pidof hyprlock || hyprlock).
    - Tested with a TTY2 login open; rescue: pkill -USR1 hyprlock (unlocks).
-9. Showcase workspace (configs + script + keybind).
+9. Showcase (done 2026-11-26): Super+D (scripts/showcase.sh) opens one kitty
+   (class "showcase", opacity 0.80, font 11) on special:showcase via a window
+   rule (not "silent", so the first press shows it); later presses show/hide,
+   Super+C closes. Layout from kitty/showcase.session (splits): fastfetch over
+   btop | clock over cmatrix over cava. Lessons: kitty session arguments do
+   not expand ~ (clock runs through bash); --next-to does not work in session
+   files, use focus_matching_window (kitty docs pattern); cmatrix paints with
+   colour 0 (grey in GitHub Dark), so that pane gets --color color0=bg; btop
+   needs at least 80x24. Clock: own block-digit script
+   (scripts/showcase-clock.sh); figlet tried and dropped (looked bad),
+   tty-clock / clock-rs are AUR only. Packages fastfetch, btop (loq.theme),
+   cava (30 fps, blue-cyan gradient). decoration.dim_special = 0.
 10. Apps: VS Code, IntelliJ, Godot (Display Scale), Chrome.
 Optional, at the end: boot visuals (plymouth); touches the boot, decide then.
 

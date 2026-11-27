@@ -1,0 +1,19 @@
+# kitty session for the showcase workspace (Super+D, scripts/showcase.sh).
+# One kitty window split into 5 panes (splits layout):
+#   fastfetch | clock
+#             | cmatrix
+#   btop      | cava
+# Each launch splits the ACTIVE pane (the one launched last); to split the
+# fastfetch pane again, focus it back with focus_matching_window (pattern from
+# the kitty sessions docs). Session commands do not expand ~ in arguments,
+# so the clock goes through bash.
+layout splits
+
+launch --var pane=fastfetch bash -c 'fastfetch; exec bash'
+launch --var pane=clock --location=vsplit bash -c 'exec "$HOME/.config/hypr/scripts/showcase-clock.sh"'
+# cmatrix paints its background with colour 0 (grey #484f58 in GitHub Dark):
+# make colour 0 the panel background in this pane only.
+launch --var pane=cmatrix --location=hsplit --bias=70 --color color0=#0d1117 cmatrix -b -u 6 -C blue
+launch --var pane=cava --location=hsplit --bias=55 cava
+focus_matching_window var:pane=fastfetch
+launch --var pane=btop --location=hsplit --bias=52 btop
