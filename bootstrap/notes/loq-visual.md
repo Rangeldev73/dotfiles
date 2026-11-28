@@ -143,7 +143,25 @@ official "GitHub Theme"; JetBrains has GitHub theme plugins).
      "ms-python.python" formatter setting did nothing. Godot path
      /usr/bin/godot-mono. Settings Sync: turn off "Settings" so sync does
      not bring the old Windows settings back.
-   - IntelliJ, Godot (Display Scale), Chrome: next.
+   - IntelliJ (done 2026-11-27, not versioned: config dir has the version in
+     its name and mixes state/licence; use JetBrains Backup and Sync).
+     Plugin "GitHub Primer Theme" (Toby Johnson, id Intellij_GitHub_Dark_Theme,
+     #0d1117 base) with theme + editor scheme "GitHub Dark Islands"
+     (options/laf.xml themeId intellij_github_dark_islands_theme,
+     options/colors.scheme.xml). Removed: "GitHub Theme" (bhushan, #252526
+     grey UI, unmaintained since 2024) and "GitHub Primer Dark Color Scheme"
+     (2020, #24292e). Editor font JetBrains Mono 14, line 1.5, ligatures.
+     Pending: Project SDK -> JDK 25 when Java work resumes.
+   - Godot (done 2026-11-27, editor settings only, not the project):
+     ~/.config/godot/editor_settings-4.7.tres: display_scale 3 (125%),
+     theme color_preset "Custom", base #0d1117, accent #58a6ff (blue rather
+     than cyan: the accent is used on many small items). Godot 4.7 key names:
+     interface/editor/appearance/display_scale, interface/theme/color_preset.
+     The grey 2D viewport is the project's default_clear_color (left alone).
+   - Chrome (done 2026-11-27, via menu in each of the 3 profiles):
+     chrome://settings/appearance -> Theme GTK (uses gtk.css), mode follows
+     the system (prefer-dark), page zoom 110%. Not edited by file: Chrome
+     signs parts of Preferences (Secure Preferences) and reverts outside edits.
 Optional, at the end: boot visuals (plymouth); touches the boot, decide then.
 
 ## Rules for every piece
