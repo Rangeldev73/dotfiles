@@ -1,7 +1,9 @@
 # LOQ visual: decisions and plan
 
-Status (2026-11-26): plan agreed, nothing applied yet. Each piece below is
-done, tested and committed on its own, in this order.
+Status (2026-11-27): all 10 pieces done, tested and committed one by one
+(plan agreed 2026-11-26). Keybinds cheat sheet: keybinds.md. Still to check
+at the next login: the autostart brings up hypridle, swaync, waybar,
+hyprpaper and the GTK settings script.
 
 ## Direction
 - Style: "terminal/hacker". Near-black background, one accent colour,
